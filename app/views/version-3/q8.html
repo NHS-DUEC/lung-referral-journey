@@ -1,34 +1,12 @@
 {% set page = {
-  title: 'Have you become breathless, or are you more breathless than usual?',
-  layout: {
-    file: layouts.base
-  },
+  title: 'Have you coughed up any blood since the problem began?',
+  layout: { file: layouts.base },
   answers: [
-    {
-      id: 'SelectedAnswer',
-      value: 'Yes',
-      label: 'Yes',
-      testId: 'answer-0'
-    },
-    {
-      id: 'SelectedAnswer_1',
-      value: "I'm not sure",
-      label: "I'm not sure",
-      testId: 'answer-1'
-    },
-    {
-      id: 'SelectedAnswer_2',
-      value: 'No',
-      label: 'No',
-      testId: 'answer-2'
-    }
+    { id: 'SelectedAnswer', value: 'Yes', label: 'Yes', testId: 'answer-0' },
+    { id: 'SelectedAnswer_1', value: "I'm not sure", label: "I'm not sure", testId: 'answer-1' },
+    { id: 'SelectedAnswer_2', value: 'No', label: 'No', testId: 'answer-2' }
   ],
-  button: {
-    text: 'Next',
-    name: 'Question',
-    value: 'Question',
-    testId: 'next-button'
-  }
+  button: { text: 'Next', name: 'Question', value: 'Question', testId: 'next-button' }
 } %}
 
 {% extends "111/layouts/base.html" %}
@@ -44,14 +22,7 @@
       <div class="nhsuk-radios" data-test-id="answers">
         {% for answer in page.answers %}
         <div class="nhsuk-radios__item">
-          <input
-            name="SelectedAnswer"
-            type="radio"
-            class="nhsuk-radios__input"
-            id="{{ answer.id }}"
-            value="{{ answer.value }}"
-            data-next-node-label="Question"
-          >
+          <input name="SelectedAnswer" type="radio" class="nhsuk-radios__input" id="{{ answer.id }}" value="{{ answer.value }}">
           <label for="{{ answer.id }}" data-test-id="{{ answer.testId }}" class="nhsuk-label nhsuk-radios__label">
             {{ answer.label }}
           </label>
@@ -61,17 +32,7 @@
     </fieldset>
   </div>
 
-  <button
-    class="nhsuk-button"
-    type="submit"
-    name="{{ page.button.name }}"
-    value="{{ page.button.value }}"
-    data-inline-spinner=""
-    data-inline-spinner-condition="[data-next-node-label='Outcome']:checked"
-    data-module="nhsuk-button"
-    data-prevent-double-click="true"
-    data-test-id="{{ page.button.testId }}"
-  >
+  <button class="nhsuk-button" type="submit" name="{{ page.button.name }}" value="{{ page.button.value }}" data-module="nhsuk-button" data-prevent-double-click="true" data-test-id="{{ page.button.testId }}">
     {{ page.button.text }}
   </button>
 </form>

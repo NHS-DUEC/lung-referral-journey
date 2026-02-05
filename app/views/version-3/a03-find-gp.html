@@ -4,21 +4,14 @@
 
 {% extends page.layout.file | d(layouts.base) %}
 
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-what-is-your-age-1",
-    text: "Back"
-  }) }}
-{% endblock %}
-
 {% block content_primary %}
 
-          <form action="#" method="post" class="form">
+          <form action="d00-get-a-chest-x-ray-iframe" method="post" class="form">
 
 
            <div class="nhsuk-width-container">
                   
-                  <form action="/Outcome/WantToLookupGP" method="post">
+                  <form action="d00-get-a-chest-x-ray-iframe" method="post">
                                         <input type="hidden" name="SessionId" value="c850a7a2-58c2-4fa4-8fb3-1af60637ca88">
                                         <input type="hidden" name="JourneyId" value="fee5a7d5-09b7-4df7-8e5f-b609af6f35de">
                                         <input type="hidden" name="Id" value="Dx16">
@@ -181,15 +174,15 @@
                                           
 
 
-                                              <input type="hidden" name="BackLink" value="true">
-          <div class="nhsuk-back-link nhsuk-u-margin-bottom-5">
-            <button name="Disposition" data-test-id="back-link" data-event-trigger="click" data-event-value="In-page back link" class=" nhsuk-back-link__link"><svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"><path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path></svg>Back</button></div>
+                                              <!-- <input type="hidden" name="BackLink" value="true"> -->
+          <!-- <div class="nhsuk-back-link nhsuk-u-margin-bottom-5">
+            <button name="Disposition" data-test-id="back-link" data-event-trigger="click" data-event-value="In-page back link" class=" nhsuk-back-link__link"><svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"><path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path></svg>Back</button></div> -->
                   </form>
 
                 <h1 data-test-id="heading-text">Find your GP surgery</h1>
                 <p class="nhsuk-u-margin-bottom-4" data-nojs-message="" style="display: none;">This page needs Javascript to work.</p>
                 
-                  <form data-module-gplookup="" method="post" novalidate="novalidate" class="nhsuk-u-margin-bottom-6" action="/Outcome/GpLookup">
+                  <form action="d00-get-a-chest-x-ray-iframe" data-module-gplookup="" method="post" novalidate="novalidate" class="nhsuk-u-margin-bottom-6" action="/Outcome/GpLookup">
         
 
                                       <input type="hidden" name="SessionId" value="c850a7a2-58c2-4fa4-8fb3-1af60637ca88">
@@ -328,25 +321,97 @@
                         <p class="nhsuk-u-margin-bottom-4">We can check if there are any additional NHS services offered by your GP surgery.</p>
                         -->
         
-                                    <div class="nhsuk-form-group ">
-                                    
-                                          <label for="gp-lookup" data-test-id="gp-lookup" class="nhsuk-label nhsuk-u-font-weight-bold">Enter a GP surgery, doctor, road or postcode</label>
-                                          
-                                          <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4">
-                                            <div class="nhsuk-grid-column-two-thirds">
-                                            <div id="gp-lookup-results">
-                                              <div class="app-autocomplete__wrapper">
-                                                <div class="app-autocomplete__status" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; padding: 0px; position: absolute; white-space: nowrap; width: 1px;">
-                                                  <div id="gp-lookup__status--A" role="status" aria-atomic="true" aria-live="polite"></div>
-                                                  <div id="gp-lookup__status--B" role="status" aria-atomic="true" aria-live="polite"></div>
-                                                </div>
-                                                <input aria-describedby="gp-lookup__assistiveHint" aria-expanded="false" aria-owns="gp-lookup__listbox" aria-autocomplete="list" autocomplete="off" class="app-autocomplete__input app-autocomplete__input--default" id="gp-lookup" name="input-autocomplete" placeholder="" type="text" role="combobox"><ul aria-label="Suggestions for your GP practice" id="gp-lookup__listbox" role="listbox" class="app-autocomplete__menu app-autocomplete__menu--inline app-autocomplete__menu--hidden"></ul>
-                                                <span id="gp-lookup__assistiveHint" style="display: none;">When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.</span>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
+                                   <div class="nhsuk-form-group">
+  <label for="gp-lookup" data-test-id="gp-lookup" class="nhsuk-label nhsuk-u-font-weight-bold">
+    Enter a GP surgery, doctor, road or postcode
+  </label>
+
+  <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div id="gp-lookup-results">
+        <div class="app-autocomplete__wrapper">
+
+          <div class="app-autocomplete__status" style="border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;">
+            <div id="gp-lookup__status--A" role="status" aria-atomic="true" aria-live="polite"></div>
+            <div id="gp-lookup__status--B" role="status" aria-atomic="true" aria-live="polite"></div>
+          </div>
+
+          <input
+            id="gp-lookup"
+            name="input-autocomplete"
+            type="text"
+            class="app-autocomplete__input app-autocomplete__input--default"
+            role="combobox"
+            autocomplete="off"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-owns="gp-lookup__listbox"
+            aria-describedby="gp-lookup__assistiveHint"
+          >
+
+          <ul
+            id="gp-lookup__listbox"
+            role="listbox"
+            aria-label="Suggestions for your GP practice"
+            class="app-autocomplete__menu app-autocomplete__menu--inline app-autocomplete__menu--hidden"
+          ></ul>
+
+          <span id="gp-lookup__assistiveHint" style="display:none;">
+            When autocomplete results are available use up and down arrows to review and enter to select.
+          </span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const dummyGps = [
+  "Leeds City Medical Practice",
+  "Woodhouse Health Centre, Leeds",
+  "Leeds Burley Park Medical Centre"
+];
+
+const input = document.getElementById("gp-lookup");
+const listbox = document.getElementById("gp-lookup__listbox");
+
+input.addEventListener("focus", showSuggestions);
+input.addEventListener("click", showSuggestions);
+
+function showSuggestions() {
+  listbox.innerHTML = "";
+  dummyGps.forEach((name, i) => {
+    const li = document.createElement("li");
+    li.textContent = name;
+    li.setAttribute("role", "option");
+    li.className = "app-autocomplete__option";
+    li.id = "gp-option-" + i;
+
+    li.addEventListener("mousedown", () => {
+      input.value = name;
+      hideSuggestions();
+    });
+
+    listbox.appendChild(li);
+  });
+
+  listbox.classList.remove("app-autocomplete__menu--hidden");
+  input.setAttribute("aria-expanded", "true");
+}
+
+function hideSuggestions() {
+  listbox.classList.add("app-autocomplete__menu--hidden");
+  input.setAttribute("aria-expanded", "false");
+}
+
+document.addEventListener("click", e => {
+  if (!e.target.closest(".app-autocomplete__wrapper")) {
+    hideSuggestions();
+  }
+});
+</script>
+
 
                           <input type="hidden" name="odsCode" autocomplete="off" value="">
                           
@@ -357,7 +422,7 @@
 
 
                     <div class="nhsuk-form-group">
-                          <form novalidate="novalidate" method="post" action="/outcome/disposition">
+                          <form novalidate="novalidate" method="post" action="d00-get-a-chest-x-ray-iframe">
                                               <input type="hidden" name="ShouldSkipGPLookup" value="True">
                                                       
                                               <input type="hidden" name="SessionId" value="c850a7a2-58c2-4fa4-8fb3-1af60637ca88">
@@ -488,9 +553,10 @@
                                                           <input type="hidden" name="ImportantCareAdvices[0].Title" value="SDMentalHealthGeneric">
                                                               <input type="hidden" name="ImportantCareAdvices[0].Items[0].Id" value="CXOL-Callout-2-Adult-Female-1">
                                                               <input type="hidden" name="ImportantCareAdvices[0].Items[0].OrderNo" value="1">
-                                                              <input type="hidden" name="ImportantCareAdvices[0].Items[0].Text" value="Find out about the different ways to &lt;a target='_blank' href='https://www.nhs.uk/mental-health/?_id=111Website'&gt;get help with your mental health&lt;span class='nhsuk-u-visually-hidden'&gt; (opens in a new tab)&lt;/span&gt;&lt;/a&gt;.">
-                                                 
-                                                    
+                                                              <input type="hidden" name="ImportantCareAdvices[0].Items[0].Text" value="Find out about the different ways to &lt;a target='_blank' href='https://www.nhs.uk/mental-health/?_id=111Website'&gt;get help with your mental health&lt;span class='nhsuk-u-visually-hidden'&gt; (opens in a new tab)&lt;/span&gt;&lt;/a&gt;.">                
+      {{ button({
+          text: "Next"
+        }) }}                                    
                                                       <!--       
                                                               <button data-event-trigger="click" data-event-value="Skip GP lookup" data-test-id="skip-gp-lookup" type="submit" class="app-button--link">Skip this step</button>
                                                         -->
@@ -501,13 +567,6 @@
             </div>
           
             <br>
-         
-     
-       <!-- button and radio buttons need to be on the same form! -->
-        {{ button({
-          text: "Next",
-          href: "web-find-the-right-topic-1"
-        }) }}
         
       </form>
 
@@ -587,7 +646,8 @@
                             <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
                               <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
                             </svg>
-                            Go back</button></div><button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-bottom-2" type="submit">Send feedback</button>
+                            Go back</button></div>
+                            <button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-bottom-2" type="submit">Send feedback</button>
                       
                     </div>
                       

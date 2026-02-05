@@ -89,21 +89,5 @@
   >
     {{ page.button.text }}
   </button>
-
-  <span class="nhsuk-core">
-    <button 
-      data-event-trigger="click" 
-      data-event-value="In-page back link" 
-      class="app-button--link nhsuk-u-margin-top-6" 
-      id="previousScreen" 
-      type="submit" 
-      value="{{ page.previousButton.value }}" 
-      name="{{ page.previousButton.name }}" 
-      formnovalidate 
-      data-test-id="{{ page.previousButton.testId }}"
-    >
-      {{ page.previousButton.text }}
-    </button>
-  </span>
 </form>
 {% endblock %}
