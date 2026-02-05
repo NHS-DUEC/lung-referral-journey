@@ -1,0 +1,139 @@
+{% set page = {
+  
+} %}
+
+{% extends "layout.html" %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% set pageName = "End of prototype" %}
+
+{% block beforeContent %}
+  <!-- {{ backLink({
+    href: "#",
+    text: "Back"
+  }) }}
+  -->
+{% endblock %}
+
+
+{% block content %}
+ 
+  <div class="nhsuk-grid-row">
+
+    <div class="nhsuk-grid-column-two-thirds">
+
+            <!-- Change the page heading -->
+
+            <!-- Add content here -->
+            <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
+            <div class="app-call-to-action">
+              <h3>Thank you for your time</h3>
+              <p>You have reached the end of this prototype.</p>
+              <p>Please go back to homepage.</p>
+                 
+              <p class="nhsuk-u-margin-bottom-0"></p> 
+            </div>
+
+          
+       <form method="post">
+       
+        {{ button({
+          text: "Back to homepage", 
+          href: "index"
+        }) }}
+        
+      </form>
+
+      <hr class="app-section-break">
+
+      <!-- Does this page make sense section -->
+      <section>
+        <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary>
+          <div class="nhsuk-details__text">
+              
+              <form data-test-id="feedback-content" action="https://staging.111.nhs.uk/Feedback/SubmitFeedback/" method="post" target="_blank" data-feedback-form="" autocomplete="off">
+                  <div class="nhsuk-form-group" data-feedback-form-section="">
+                        <fieldset class="nhsuk-fieldset">
+                            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m nhsuk-u-visually-hidden">Does the page make sense?</legend>
+                            <div class="nhsuk-radios">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" data-test-id="feedback-choice-yes" id="feedback-choice-yes" name="FeedbackChoice" type="radio" value="Yes">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feedback-choice-yes">Yes</label>
+                                </div>
+
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" data-test-id="feedback-choice-no" id="feedback-choice-no" name="FeedbackChoice" type="radio" value="No">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feedback-choice-no">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="app-callout app-callout--info nhsuk-u-margin-top-3 nhsuk-u-margin-bottom-0" data-test-id="u13-consent">
+                            <p>If you're under 13, you should have permission from your parent or guardian before leaving feedback.</p>
+                        </div>
+                    <button class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-top-4" data-test-id="feedback-tell-us-button">Tell us</button></div>
+                    
+                    <div data-feedback-form-section="" hidden="">
+      
+                        <fieldset class="nhsuk-fieldset">
+                              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m nhsuk-u-margin-bottom-0" data-test-id="feedback-explanation-1">Tell us how to make this page easier to understand</legend>                                                    
+                              <br>
+                                    <div class="nhsuk-character-count nhsuk-u-margin-bottom-0" data-module="nhsuk-character-count" data-maxlength="1200" data-threshold="75">
+                                      <div class="nhsuk-form-group">
+
+                                          <div class="app-callout app-callout--info" id="feedback-contact-warning">
+                                              <p data-test-id="feedback-explanation-no-pid">Do <strong>not</strong> leave any personal or contact information. No one will reply to requests for medical help or contact you.</p>
+                                          </div>
+
+                                          <label for="feedback-text" class="nhsuk-label">Your feedback</label>                            
+                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info" data-autosize="" data-original-aria-describedby="feedback-contact-warning feedback-text-info" style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 152px;"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div><div class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status nhsuk-character-count__message--disabled" aria-hidden="true">You have 1200 characters remaining</div><div class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden" aria-live="polite" aria-hidden="true">You have 1200 characters remaining</div>
+                                      </div>
+                                    </div>
+                        </fieldset>
+
+                        <script type="application/json" data-feedback-form-section-validation-rules="">
+                        [
+                          {
+                              "id": "feedback-text",
+                              "name": "Text",
+                              "rule": "required",
+                              "message": "Enter your feedback"
+                          },
+                          {
+                              "id": "feedback-text",
+                              "name": "Text",
+                              "rule": "maxlength",
+                              "maxlength": 1200,
+                              "message": "Feedback should be fewer than 1200 characters long"
+                          },
+                          {
+                              "id": "feedback-text",
+                              "name": "Text",
+                              "rule": "PID",
+                              "message": "Your feedback cannot include any personal information or contact details"
+                          }
+                        ]
+                        </script>
+
+                        <div class="nhsuk-back-link"><button class="nhsuk-back-link__link" href="#">
+                            <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+                              <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                            </svg>
+                            Go back</button></div><button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-bottom-2" type="submit">Send feedback</button>
+                      
+                    </div>
+                      
+              </form>
+
+          </div>
+        </details>
+      </section>
+   
+    </div>
+  </div>
+
+
+  
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% set page = {
+  title: "We'll now ask you questions about your symptoms",
+  layout: {
+    file: layouts.base
+  },
+  callout: {
+    type: 'attention',
+    content: {
+      heading: "We'll now ask you questions about your symptoms.",
+      paragraphs: [
+        "Some might not seem relevant, but they help us rule things out. We rule out serious conditions first. The more questions there are the less serious it's likely to be.",
+        "You won't get a diagnosis, but you will find out what to do next."
+      ]
+    }
+  },
+  button: {
+    text: 'I understand',
+    name: 'Question',
+    value: 'Question'
+  }
+} %}
+
+{% extends "111/layouts/base.html" %}
+
+{% block content_primary %}
+<div class="page-section clearfix">
+  <form action="q1" class="measure" method="post">
+    <div id="answers">
+      <div class="nhsuk-core callout callout--attention">
+        <h1 class="nhsuk-u-font-size-19 nhsuk-u-font-weight-normal nhsuk-u-margin-bottom-4">
+          {{ page.callout.content.heading }}
+        </h1>
+        {% for paragraph in page.callout.content.paragraphs %}
+          <p{% if loop.last %} class="nhsuk-u-margin-bottom-0"{% endif %}>
+            {{ paragraph }}
+          </p>
+        {% endfor %}
+      </div>
+    </div>
+    <button class="button--next" id="nextScreen">
+      {{ page.button.text }}
+    </button>
+  </form>
+</div>
+{% endblock %}

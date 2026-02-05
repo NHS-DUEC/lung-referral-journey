@@ -1,0 +1,186 @@
+{% set page = {
+  title: 'Your confirmation'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+
+{% block content_primary %}
+
+
+            <div class="app-call-to-action">
+              
+                    <h2>We have sent a copy of this page to john.smith@gmail.com</h2>
+              
+            </div>
+       
+            <h1 class="nhsuk-heading-xl" data-test-id="outcome-heading">Your request for a chest X-ray has been sent</h1>
+              <p>We have sent your request to XXXXXX. You should go to the hospital during opening hours, as soon as you can in the next few days.</p>
+              <p>You do not need an appointment - just walk in and ask for the “self-request chest X-ray service”.</p>
+                  
+              <div class="app-service-details">
+                    <div class="app-service-details__content">
+                            <span data-test-id="service-alias" class="nhsuk-u-font-size-19 nhsuk-u-font-weight-bold">Chest X-ray</span>
+
+                            <span class="nhsuk-u-visually-hidden"> - </span>
+                            <br aria-hidden="true">
+                            <span data-test-id="service-name" class="nhsuk-u-font-size-19 nhsuk-u-font-weight-normal">Radiology Department</span>
+                            <p data-test-id="service-detail-address">
+                                St James’s University Hospital<br>
+                                Beckett St, Harehills<br>
+                                Leeds<br>
+                                LS9 7TF<br>
+
+                          <p data-test-id="opening-time-text">Open today: XX hours</p>
+                          <p data-test-id="miles-away-text">12.7 miles away</p>
+
+                         
+                           <p><a href="" data-event-trigger="click" data-event-value="Get directions">Hide map <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></p>
+                             
+                    </div>
+
+                    <!--- Map view with drop pin --> 
+                    <div class="app-service-details__map">
+                        <div class="app-service-details__map__gmap" style="position: relative; overflow: hidden;">
+                            <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                                <div>
+                                    <iframe src="https://www.google.com/maps/d/embed?mid=1kkeLfW5lywID52RcYjAJ5ZccaC_-gvQ&ehbc=2E312F&noprof=1" width="300" height="300"></iframe>
+                                </div>
+                            </div>
+                        </div>
+   
+                    </div>
+              
+                    <br>
+ 
+                  <!--- Get directions link -->
+                    <div class="app-service-details__content">
+                        <p><a data-test-id="get-directions-link" class="app-u-js-only" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=BB1 2EE&amp;destination=Chorley and South Ribble District Hospital, Preston Road, Chorley, PR7 1PP&amp;zoom=16" data-event-trigger="click" data-event-value="Get directions">Get directions <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></p>
+                    </div>
+               
+        </div>
+
+              <h2>What happens during the chest X-ray</h2>
+              <p>When you arrive at the hospital you will usually wait no more than about 10 minutes. The X-ray takes about 20 minutes.</p>
+              <p>You will undress to the waist and be given a hospital gown to wear. You keep your belongings with you.</p>
+              <p>Find out more about <a href="https://www.nhs.uk/tests-and-treatments/x-ray/">what happens during an X-ray</a></p>
+            
+              <h2>Contacting your GP surgery for the results</h2>
+              <p>The results will be sent to your GP surgery about 2 weeks after the X-ray.</p>
+              <p>You must contact them to find out what happens next.</p>
+
+                <br>
+            <form method="post">
+                  
+                    {{ button({
+                      text: "Send me a copy of this page", 
+                      href: "web-where-are-you-now-3"
+                    }) }}
+                    
+             </form>
+              <!--
+              <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="I am unable to book a call"><span class="nhsuk-details__summary-text">I am unable to book a call</span></summary><div class="nhsuk-details__text">
+                  <p>
+                  Local NHS callback services are currently only available on the phone.
+                  There are <a href="/Help/OtherWays" target="_blank" data-event-trigger="click" data-event-value="Other ways to contact 111">other ways to contact 111<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>, but unfortunately, you'll have to provide all your answers again.
+              </p>
+              </div></details>
+              
+              --> 
+
+        
+
+
+  
+    
+
+      <hr class="app-section-break">
+
+      <!-- Does this page make sense section -->
+      <section>
+        <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary>
+          <div class="nhsuk-details__text">
+              
+              <form data-test-id="feedback-content" action="https://staging.111.nhs.uk/Feedback/SubmitFeedback/" method="post" target="_blank" data-feedback-form="" autocomplete="off">
+                  <div class="nhsuk-form-group" data-feedback-form-section="">
+                        <fieldset class="nhsuk-fieldset">
+                            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m nhsuk-u-visually-hidden">Does the page make sense?</legend>
+                            <div class="nhsuk-radios">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" data-test-id="feedback-choice-yes" id="feedback-choice-yes" name="FeedbackChoice" type="radio" value="Yes">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feedback-choice-yes">Yes</label>
+                                </div>
+
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" data-test-id="feedback-choice-no" id="feedback-choice-no" name="FeedbackChoice" type="radio" value="No">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feedback-choice-no">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="app-callout app-callout--info nhsuk-u-margin-top-3 nhsuk-u-margin-bottom-0" data-test-id="u13-consent">
+                            <p>If you're under 13, you should have permission from your parent or guardian before leaving feedback.</p>
+                        </div>
+                    <button class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-top-4" data-test-id="feedback-tell-us-button">Tell us</button></div>
+                    
+                    <div data-feedback-form-section="" hidden="">
+      
+                        <fieldset class="nhsuk-fieldset">
+                              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m nhsuk-u-margin-bottom-0" data-test-id="feedback-explanation-1">Tell us how to make this page easier to understand</legend>                                                    
+                              <br>
+                                    <div class="nhsuk-character-count nhsuk-u-margin-bottom-0" data-module="nhsuk-character-count" data-maxlength="1200" data-threshold="75">
+                                      <div class="nhsuk-form-group">
+
+                                          <div class="app-callout app-callout--info" id="feedback-contact-warning">
+                                              <p data-test-id="feedback-explanation-no-pid">Do <strong>not</strong> leave any personal or contact information. No one will reply to requests for medical help or contact you.</p>
+                                          </div>
+
+                                          <label for="feedback-text" class="nhsuk-label">Your feedback</label>                            
+                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info" data-autosize="" data-original-aria-describedby="feedback-contact-warning feedback-text-info" style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 152px;"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div><div class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status nhsuk-character-count__message--disabled" aria-hidden="true">You have 1200 characters remaining</div><div class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden" aria-live="polite" aria-hidden="true">You have 1200 characters remaining</div>
+                                      </div>
+                                    </div>
+                        </fieldset>
+
+                        <script type="application/json" data-feedback-form-section-validation-rules="">
+                        [
+                          {
+                              "id": "feedback-text",
+                              "name": "Text",
+                              "rule": "required",
+                              "message": "Enter your feedback"
+                          },
+                          {
+                              "id": "feedback-text",
+                              "name": "Text",
+                              "rule": "maxlength",
+                              "maxlength": 1200,
+                              "message": "Feedback should be fewer than 1200 characters long"
+                          },
+                          {
+                              "id": "feedback-text",
+                              "name": "Text",
+                              "rule": "PID",
+                              "message": "Your feedback cannot include any personal information or contact details"
+                          }
+                        ]
+                        </script>
+
+                        <div class="nhsuk-back-link"><button class="nhsuk-back-link__link" href="#">
+                            <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+                              <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                            </svg>
+                            Go back</button></div><button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-bottom-2" type="submit">Send feedback</button>
+                      
+                    </div>
+                      
+              </form>
+
+          </div>
+        </details>
+      </section>
+   
+
+
+  
+
+{% endblock %}
