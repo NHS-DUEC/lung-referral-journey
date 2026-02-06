@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Your confirmation'
+    title: 'Your confirmation'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
@@ -7,10 +7,11 @@
 
 {% block content_primary %}
 
-       
+
+<form method="post" action="sr09-receipt">
             <h1 class="nhsuk-heading-xl" data-test-id="outcome-heading">Your request for a chest X-ray has been sent</h1>
               <p>We have sent your request to XXXXXX. You should go to the hospital during opening hours, as soon as you can in the next few days.</p>
-              <p>You do not need an appointment - just walk in and ask for the “self-request chest X-ray service”.</p>
+              <p>You do not need an appointment - just walk in and ask for the "self-request chest X-ray service".</p>
                   
               <div class="app-service-details">
                     <div class="app-service-details__content">
@@ -20,7 +21,7 @@
                             <br aria-hidden="true">
                             <span data-test-id="service-name" class="nhsuk-u-font-size-19 nhsuk-u-font-weight-normal">Radiology Department</span>
                             <p data-test-id="service-detail-address">
-                                St James’s University Hospital<br>
+                                St James's University Hospital<br>
                                 Beckett St, Harehills<br>
                                 Leeds<br>
                                 LS9 7TF<br>
@@ -64,11 +65,9 @@
               <p>You must contact them to find out what happens next.</p>
 
                 <br>
-            <form method="post">
                   
                     {{ button({
-                      text: "Send me a copy of this page", 
-                      href: "web-where-are-you-now-3"
+                      text: "Send me a copy of this page"
                     }) }}
                     
              </form>
