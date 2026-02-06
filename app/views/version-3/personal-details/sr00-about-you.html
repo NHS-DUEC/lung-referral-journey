@@ -1,52 +1,46 @@
 {% set page = {
-  title: 'Your name'
+  title: 'Tell us more about you'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-what-is-your-age-1",
-    text: "Back"
-  }) }}
-{% endblock %}
+
 
 {% block content_primary %}
 
-          <form action="#" method="post" class="form">
-          
-         <!-- <div class="nhsuk-width-container"> -->
 
-            <fieldset class="nhsuk-fieldset"><legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" data-test-id="heading-text"><h1 class="nhsuk-fieldset__heading">What is your name?</h1></legend>
+      <fieldset class="nhsuk-fieldset">
+              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                <h1 class="nhsuk-fieldset__heading">
+                  Tell us more about you
+                </h1>
+              </legend>
 
-                <div class="nhsuk-form-group">
-                  <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label" data-test-id="patient-forename-label" for="Forename">First name</label>
-                  </h1>
-                  <input data-test-id="patient-forename-input" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="Forename" name="Forename">
-                </div>
+              <p>We need some more personal details from you. Knowing these details in advance helps the hospital X-ray staff confirm who you are.</p>
+              <p>We will ask for your:</p>
+                        <ul class="nhsuk-list nhsuk-list--bullet">
+                          <li>full name</li>
+                          <li>date of birth</li>
+                          <li>phone number</li>
+                          <li>email (optional)</li>
+                          <li>home address</li>
+                          <li>Smoking history</li>
+                        </ul>
+              <p> We will also ask if you need any help moving around during your appointment, or any other support. </p>
+                      <br>
+           
+      </fieldset>
 
-                <div class="nhsuk-form-group">
-                  <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label" data-test-id="patient-surname-label" for="Surname">Last name</label>
-                  </h1>
-                  <input data-test-id="patient-surname-input" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="Surname" name="Surname">
-                </div>
-            </fieldset>
-        
-         <!--   </div> -->
-            <br>
-         
-    
 
-      
-       <!-- button and radio buttons need to be on the same form! -->
-        {{ button({
-          text: "Next",
-          href: "web-find-the-right-topic-1"
-        }) }}
-        
-      </form>
+            <form method="post" action="sr00-about-you" class="form">
+                  
+                    {{ button({
+                      text: "Next", 
+                      href: "sr02-name"
+                    }) }}
+                    
+             </form>
 
-      
       <hr class="app-section-break">
 
       <!-- Does this page make sense section -->
@@ -132,6 +126,7 @@
         </details>
       </section>
    
+
 
   
 

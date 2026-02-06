@@ -1,71 +1,72 @@
 {% set page = {
-  title: 'Home address'
+  title: 'Your date of birth'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
 
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-a-e-visit",
-    text: "Back"
-  }) }}
-{% endblock %}
-
 {% block content_primary %}
-    
-    <form action="#" method="post" class="form">
-        <div class="nhsuk-form-group">
-            <fieldset class="nhsuk-fieldset" aria-describedby="contact-hint">
-                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                    <h1 class="nhsuk-fieldset__heading">
-                    Is LS9 8QS
-                        <!-- {{ data.CurrentPostcode3 }} -->
-                    your home postcode?
-                    </h1>
-                </legend>
-                                        
-      
-                    <div class="nhsuk-radios" data-module="nhsuk-radios">
-                                        <div class="nhsuk-radios__item">
-                                            <input class="nhsuk-radios__input" id="is-home-postcode-1" name="is-home-postcode-1" type="radio" value="yes" data-aria-controls="conditional-postcode">
-                                            <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-1">
-                                            Yes
-                                            </label>
-                                        </div>
-                                        
-                                        <div class="nhsuk-radios__item">
-                                            <input class="nhsuk-radios__input" id="is-home-postcode-2" name="is-home-postcode-2" type="radio" value="no" data-aria-controls="conditional-postcode-2">
-                                            <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-2">
-                                            No
-                                            </label>
-                                        </div>
-                                        <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-postcode-2">
-                                            <div class="nhsuk-form-group">
-                                            <label class="nhsuk-label" for="home_postcode">
-                                                Your home postcode
-                                            </label>
-                                            <input class="nhsuk-input nhsuk-u-width-two-thirds" id="home_postcode" name="home_postcode" type="text">
-                                            </div>
-                                        </div>
-                                                  
+
+
+
+          <form action="sr03-dob" method="post" class="form">
+          
+           <!-- <div class="nhsuk-width-container"> -->
+
+                  <div class="nhsuk-form-group">
+                      <fieldset class="nhsuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
+                        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                          <h1 class="nhsuk-fieldset__heading">
+                            What is your date of birth?
+                          </h1>
+                        </legend>
+                        <div id="date-of-birth-hint" class="nhsuk-hint">
+                          For example, 15 3 1984
+                        </div>
+                        <div id="date-of-birth" class="nhsuk-date-input">
+                          <div class="nhsuk-date-input__item">
+                            <div class="nhsuk-form-group">
+                              <label class="nhsuk-label nhsuk-date-input__label" for="date-of-birth-day">
+                                Day
+                              </label>
+                              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="date-of-birth-day" name="dateOfBirth[day]" type="text" inputmode="numeric">
+                            </div>
+                          </div>
+                          <div class="nhsuk-date-input__item">
+                            <div class="nhsuk-form-group">
+                              <label class="nhsuk-label nhsuk-date-input__label" for="date-of-birth-month">
+                                Month
+                              </label>
+                              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="date-of-birth-month" name="dateOfBirth[month]" type="text" inputmode="numeric">
+                            </div>
+                          </div>
+                          <div class="nhsuk-date-input__item">
+                            <div class="nhsuk-form-group">
+                              <label class="nhsuk-label nhsuk-date-input__label" for="date-of-birth-year">
+                                Year
+                              </label>
+                              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="date-of-birth-year" name="dateOfBirth[year]" type="text" inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
                     </div>
-                </fieldset>
-         </div>
-
-
-
+        
+               <!-- </div> -->
             <br>
+         
+     
 
-              {{ button({
-                text: "Next"
-              }) }}
+      
+       <!-- button and radio buttons need to be on the same form! -->
+        {{ button({
+          text: "Next",
+          href: "sr04-phone"
+        }) }}
+        
+      </form>
 
-            
-    </form>
-  
-    
-
+      
       <hr class="app-section-break">
 
       <!-- Does this page make sense section -->
@@ -151,7 +152,6 @@
         </details>
       </section>
    
-
 
   
 

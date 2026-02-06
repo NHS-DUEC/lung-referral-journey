@@ -1,76 +1,70 @@
 {% set page = {
-  title: 'Your date of birth'
+  title: 'Your email address'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-what-is-your-age-1",
-    text: "Back"
-  }) }}
-{% endblock %}
-
 {% block content_primary %}
 
+           <form action="sr05-email" method="post" class="form">
+           <!--
+            <input type="hidden" name="SessionId" value="cf3da228-aefe-40bc-83de-bdba5998d26c">
+            <input type="hidden" name="FilterServices" value="True">
+            <input type="hidden" name="CurrentPostcode" value="GU216XS">
+            <input type="hidden" name="Campaign" value="NHS Surrey Heartlands Integrated Care Board">
+            <input type="hidden" name="Source" value="NHS Surrey Heartlands ICB - 92A">
+            <input type="hidden" name="StartParameter" value="">
+            <input type="hidden" name="PathwayNo" value="">
+            <input type="hidden" name="JourneyType" value="Default">
+            <input type="hidden" name="NhsLoginConsent" value="ConsentNotApplicable">
+            <input type="hidden" name="InformantType" value="NotSpecified">
+            <input type="hidden" name="ViewName" value="Age">
+          -->
+      <fieldset class="nhsuk-fieldset">
 
-
-          <form action="#" method="post" class="form">
+        <div class="nhsuk-form-group  nhsuk-u-margin-bottom-5">
+          <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label nhsuk-label--l nhsuk-u-margin-bottom-5" data-test-id="heading-text" for="UserInfo_Age_Age">
+             What is your email address?
+             </label>
+          </h1>
           
-           <!-- <div class="nhsuk-width-container"> -->
+        </div>
 
-                  <div class="nhsuk-form-group">
-                      <fieldset class="nhsuk-fieldset" role="group" aria-describedby="date-of-birth-hint">
-                        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                          <h1 class="nhsuk-fieldset__heading">
-                            What is your date of birth?
-                          </h1>
-                        </legend>
-                        <div id="date-of-birth-hint" class="nhsuk-hint">
-                          For example, 15 3 1984
-                        </div>
-                        <div id="date-of-birth" class="nhsuk-date-input">
-                          <div class="nhsuk-date-input__item">
-                            <div class="nhsuk-form-group">
-                              <label class="nhsuk-label nhsuk-date-input__label" for="date-of-birth-day">
-                                Day
-                              </label>
-                              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="date-of-birth-day" name="dateOfBirth[day]" type="text" inputmode="numeric">
-                            </div>
-                          </div>
-                          <div class="nhsuk-date-input__item">
-                            <div class="nhsuk-form-group">
-                              <label class="nhsuk-label nhsuk-date-input__label" for="date-of-birth-month">
-                                Month
-                              </label>
-                              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="date-of-birth-month" name="dateOfBirth[month]" type="text" inputmode="numeric">
-                            </div>
-                          </div>
-                          <div class="nhsuk-date-input__item">
-                            <div class="nhsuk-form-group">
-                              <label class="nhsuk-label nhsuk-date-input__label" for="date-of-birth-year">
-                                Year
-                              </label>
-                              <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="date-of-birth-year" name="dateOfBirth[year]" type="text" inputmode="numeric">
-                            </div>
-                          </div>
-                        </div>
-                      </fieldset>
-                    </div>
+                <div class="app-callout app-callout--info">
+                  <p data-test-id="gender-callout-info-1">You can give us an email address if you want to. </p>
+              </div>
         
-               <!-- </div> -->
-            <br>
-         
-     
+        <div class="nhsuk-form-group">
+       <!--<label class="nhsuk-label" data-test-id="telephonenumber-label" for="TelephoneNumber">Enter a mobile number</label> --> 
+        <input data-test-id="telephonenumber-input" inputmode="tel" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="TelephoneNumber" name="TelephoneNumber">
+      </div>
 
-      
-       <!-- button and radio buttons need to be on the same form! -->
+        <br>
+
+        
+       
+       
+
+        <!--
+        <button data-test-id="next-button" type="submit" class="nhsuk-button " data-module="nhsuk-button">Next</button>
+        -->
+
         {{ button({
           text: "Next",
-          href: "web-find-the-right-topic-1"
+          href: "sr06-home-postcode"
         }) }}
-        
-      </form>
+
+                    <br>
+
+                  <a href="#">Skip</a>
+
+      </fieldset>
+
+      <br>
+         
+    
+    </form>
+
 
       
       <hr class="app-section-break">

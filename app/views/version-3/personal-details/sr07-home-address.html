@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Tell us more about you'
+  title: 'Home address'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
@@ -13,38 +13,28 @@
 {% endblock %}
 
 {% block content_primary %}
+      <form method="post">
+        <div class="nhsuk-width-container">
+
+           <h1 data-test-id="heading-text" class="nhsuk-heading-l">What is your home address at LS9 8QS?</h1>
 
 
-      <fieldset class="nhsuk-fieldset">
-              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                <h1 class="nhsuk-fieldset__heading">
-                  Tell us more about you
-                </h1>
-              </legend>
+                        <ul class="app-option-list">
+                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="50265434" class="app-button--link app-option-list__button">1 Viking Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
+                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452586" class="app-button--link app-option-list__button">1-2 Saxon Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
+                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452581" class="app-button--link app-option-list__button">Ambulance Station, 2 Viking Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
+                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452583" class="app-button--link app-option-list__button">Virgin Media, 2 Viking Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
+                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452582" class="app-button--link app-option-list__button">5 Saxon Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
+                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="54672599" class="app-button--link app-option-list__button">Yess Electrical, 6c-6d Saxon Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
+        </ul>
 
-              <p>We need some more personal details from you. Knowing these details in advance helps the hospital X-ray staff confirm who you are.</p>
-              <p>We will ask for your:</p>
-                        <ul class="nhsuk-list nhsuk-list--bullet">
-                          <li>full name</li>
-                          <li>date of birth</li>
-                          <li>phone number</li>
-                          <li>email (optional)</li>
-                          <li>home address</li>
-                        </ul>
+                        <br>
 
-                      <br>
-           
-      </fieldset>
+            <button type="submit" data-test-id="address-not-shown" name="currentAddress" value="AddressNotListed" class="app-button--link nhsuk-u-margin-bottom-4">My home address is not any of these above</button>
+          </div>          
 
-
-            <form method="post">
-                  
-                    {{ button({
-                      text: "Next", 
-                      href: "web-where-are-you-now-3"
-                    }) }}
                     
-             </form>
+      </form>
               <!--
               <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="I am unable to book a call"><span class="nhsuk-details__summary-text">I am unable to book a call</span></summary><div class="nhsuk-details__text">
                   <p>

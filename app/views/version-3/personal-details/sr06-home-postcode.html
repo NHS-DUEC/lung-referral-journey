@@ -13,41 +13,57 @@
 {% endblock %}
 
 {% block content_primary %}
-      <form method="post">
-        <div class="nhsuk-width-container">
+    
+    <form action="sr06-home-postcode" method="post" class="form">
+        <div class="nhsuk-form-group">
+            <fieldset class="nhsuk-fieldset" aria-describedby="contact-hint">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                    Is LS9 8QS
+                        <!-- {{ data.CurrentPostcode3 }} -->
+                    your home postcode?
+                    </h1>
+                </legend>
+                                        
+      
+                    <div class="nhsuk-radios" data-module="nhsuk-radios">
+                                        <div class="nhsuk-radios__item">
+                                            <input class="nhsuk-radios__input" id="is-home-postcode-1" name="is-home-postcode-1" type="radio" value="yes" data-aria-controls="conditional-postcode">
+                                            <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-1">
+                                            Yes
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="nhsuk-radios__item">
+                                            <input class="nhsuk-radios__input" id="is-home-postcode-2" name="is-home-postcode-2" type="radio" value="no" data-aria-controls="conditional-postcode-2">
+                                            <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-2">
+                                            No
+                                            </label>
+                                        </div>
+                                        <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-postcode-2">
+                                            <div class="nhsuk-form-group">
+                                            <label class="nhsuk-label" for="home_postcode">
+                                                Your home postcode
+                                            </label>
+                                            <input class="nhsuk-input nhsuk-u-width-two-thirds" id="home_postcode" name="home_postcode" type="text">
+                                            </div>
+                                        </div>
+                                                  
+                    </div>
+                </fieldset>
+         </div>
 
-           <h1 data-test-id="heading-text" class="nhsuk-heading-l">What is your home address at LS9 8QS?</h1>
 
 
-                        <ul class="app-option-list">
-                                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="58103738" class="app-button--link app-option-list__button">Address 1, Leeds, LS9 8QS</button></li>
-                                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="57359091" class="app-button--link app-option-list__button">Address 2, Leeds, LS9 8QS</button></li>
-                                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="51417953" class="app-button--link app-option-list__button">Address 3, Leeds, LS9 8QS</button></li>
-                                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="53338709" class="app-button--link app-option-list__button">Address 4, Leeds, LS9 8QS</button></li>
-                                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="28288655" class="app-button--link app-option-list__button">Address 5, Leeds, LS9 8QS</button></li>
-                                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="27878553" class="app-button--link app-option-list__button">Address 6, Leeds, LS9 8QS</button></li>
-                        </ul>
+            <br>
 
-                        <br>
+               {{ button({
+          text: "Next",
+          href: "sr07-home-address"
+        }) }}
 
-            <button type="submit" data-test-id="address-not-shown" name="currentAddress" value="AddressNotListed" class="app-button--link nhsuk-u-margin-bottom-4">My home address is not any of these above</button>
-          </div>          
-
-                    
-      </form>
-              <!--
-              <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="I am unable to book a call"><span class="nhsuk-details__summary-text">I am unable to book a call</span></summary><div class="nhsuk-details__text">
-                  <p>
-                  Local NHS callback services are currently only available on the phone.
-                  There are <a href="/Help/OtherWays" target="_blank" data-event-trigger="click" data-event-value="Other ways to contact 111">other ways to contact 111<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>, but unfortunately, you'll have to provide all your answers again.
-              </p>
-              </div></details>
-              
-              --> 
-
-        
-
-
+            
+    </form>
   
     
 

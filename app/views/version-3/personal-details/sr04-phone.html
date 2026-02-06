@@ -1,19 +1,13 @@
 {% set page = {
-  title: 'Your email address'
+  title: 'Your phone number'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-what-is-your-age-1",
-    text: "Back"
-  }) }}
-{% endblock %}
 
 {% block content_primary %}
 
-           <form action="#" method="post" class="form">
+    <form action="sr04-phone" method="post" class="form">
            <!--
             <input type="hidden" name="SessionId" value="cf3da228-aefe-40bc-83de-bdba5998d26c">
             <input type="hidden" name="FilterServices" value="True">
@@ -31,25 +25,24 @@
 
         <div class="nhsuk-form-group  nhsuk-u-margin-bottom-5">
           <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label nhsuk-label--l nhsuk-u-margin-bottom-5" data-test-id="heading-text" for="UserInfo_Age_Age">
-             What is your email address?
+             What is your phone number?
              </label>
           </h1>
           
         </div>
 
-                <div class="app-callout app-callout--info">
-                  <p data-test-id="gender-callout-info-1">You can give us an email address if you want to. </p>
+        <div class="app-callout app-callout--info">
+                  <p data-test-id="gender-callout-info-1">We need this in case the hospital has to contact you for any reason.</p>
               </div>
-        
+
         <div class="nhsuk-form-group">
-       <!--<label class="nhsuk-label" data-test-id="telephonenumber-label" for="TelephoneNumber">Enter a mobile number</label> --> 
-        <input data-test-id="telephonenumber-input" inputmode="tel" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="TelephoneNumber" name="TelephoneNumber">
-      </div>
+        <label class="nhsuk-label" data-test-id="telephonenumber-label" for="TelephoneNumber">Enter a mobile or landline number</label>
+        <input data-test-id="telephonenumber-input" inputmode="tel" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="TelephoneNumber" name="TelephoneNumber"></div>
 
         <br>
 
         
-       
+    
        
 
         <!--
@@ -57,12 +50,9 @@
         -->
 
           {{ button({
-                      text: "Next"
-                    }) }}
-
-                    <br>
-
-                  <a href="#">Skip</a>
+          text: "Next",
+          href: "sr05-email"
+        }) }}
 
       </fieldset>
 
