@@ -1,11 +1,11 @@
 {% set page = {
-  title: 'Does the skin on your chest, back or tummy feel cold when you touch it?',
+  title: 'Have you choked on something in the last 24 hours?',
   layout: {
     file: layouts.base
   },
   question: {
     callout: {
-      text: 'This means your bare skin feels colder than normal - not warm or hot.'
+      text: "This means something like food, a small object or sick (vomit). We do not need to know about a drink that's gone down the wrong way."
     }
   },
   answers: [
@@ -13,18 +13,20 @@
       id: 'SelectedAnswer',
       value: 'Yes',
       label: 'Yes',
-      testId: 'answer-0'
+      testId: 'answer-0',
+      disabled: true
     },
     {
       id: 'SelectedAnswer_1',
-      value: 'No',
-      label: 'No',
-      testId: 'answer-1'
+      value: "I'm not sure",
+      label: "I'm not sure",
+      testId: 'answer-1',
+      disabled: true
     },
     {
       id: 'SelectedAnswer_2',
-      value: 'I cannot check',
-      label: 'I cannot check',
+      value: 'No',
+      label: 'No',
       testId: 'answer-2'
     }
   ],
@@ -39,7 +41,7 @@
 {% extends "111/layouts/base.html" %}
 
 {% block content_primary %}
-<form action="q2" method="post" novalidate>
+<form action="q7" method="post" novalidate>
   
   <div class="nhsuk-form-group nhsuk-u-margin-bottom-5 nhsuk-u-reading-width">
     <fieldset class="nhsuk-fieldset" aria-describedby="selected-answer-rationale">
@@ -62,6 +64,7 @@
             class="nhsuk-radios__input" 
             id="{{ answer.id }}" 
             value="{{ answer.value }}"
+            {% if answer.disabled %}disabled{% endif %}
           >
           <label for="{{ answer.id }}" data-test-id="{{ answer.testId }}" class="nhsuk-label nhsuk-radios__label">
             {{ answer.label }}
@@ -73,7 +76,7 @@
   </div>
 
   <button 
-    class="nhsuk-button" 
+    class="nhsuk-button nhsuk-u-margin-bottom-6" 
     type="submit" 
     name="{{ page.button.name }}" 
     value="{{ page.button.value }}" 
@@ -84,4 +87,9 @@
     {{ page.button.text }}
   </button>
 </form>
+
+<section>
+    <hr class="app-section-break">
+    <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary>
+</section>
 {% endblock %}

@@ -65,30 +65,46 @@
 
                          
                            <p><a href="" data-event-trigger="click" data-event-value="Get directions">Hide map <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></p>
-                             
+                           <p class="app-get-directions-desktop">
+                                <a data-test-id="get-directions-link" class="app-u-js-only" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=BB1 2EE&amp;destination=Chorley and South Ribble District Hospital, Preston Road, Chorley, PR7 1PP&amp;zoom=16" data-event-trigger="click" data-event-value="Get directions">Get directions <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>
+                            </p>
                     </div>
 
-                    <!--- Map view with drop pin --> 
                     <div class="app-service-details__map">
-                        <div class="app-service-details__map__gmap" style="position: relative; overflow: hidden;">
-                            <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
-                                <div>
-                                    <iframe src="https://www.google.com/maps/d/embed?mid=1kkeLfW5lywID52RcYjAJ5ZccaC_-gvQ&ehbc=2E312F&noprof=1" width="300" height="300"></iframe>
-                                </div>
-                            </div>
+                        <div class="app-service-details__map__gmap" style="height: 100%; min-height: 300px; position: relative; overflow: hidden;">
+                            <iframe
+                                src="https://www.google.com/maps/d/embed?mid=1kkeLfW5lywID52RcYjAJ5ZccaC_-gvQ&ehbc=2E312F&noprof=1"
+                                style="width: 100%; height: 100%; border: 0; display: block;"
+                                loading="lazy">
+                            </iframe>
                         </div>
-   
                     </div>
               
                     <br>
  
-                  <!--- Get directions link -->
-                    <!-- <div class="app-service-details__content">
-                        <p><a data-test-id="get-directions-link" class="app-u-js-only" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=BB1 2EE&amp;destination=Chorley and South Ribble District Hospital, Preston Road, Chorley, PR7 1PP&amp;zoom=16" data-event-trigger="click" data-event-value="Get directions">Get directions <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></p>
-                    </div> -->
-               
-                    <p><a data-test-id="get-directions-link" class="app-u-js-only" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=BB1 2EE&amp;destination=Chorley and South Ribble District Hospital, Preston Road, Chorley, PR7 1PP&amp;zoom=16" data-event-trigger="click" data-event-value="Get directions">Get directions <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></p>
+                    <p class="app-get-directions-mobile">
+                        <a data-test-id="get-directions-link" class="app-u-js-only" target="_blank" rel="noreferrer noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=BB1 2EE&amp;destination=Chorley and South Ribble District Hospital, Preston Road, Chorley, PR7 1PP&amp;zoom=16" data-event-trigger="click" data-event-value="Get directions">Get directions <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>
+                    </p>
         </div>
+
+        <script>
+            function toggleGetDirections() {
+                const desktopLink = document.querySelector('.app-get-directions-desktop');
+                const mobileLink = document.querySelector('.app-get-directions-mobile');
+                
+                if (window.innerWidth < 1024) {
+                    desktopLink.style.display = 'none';
+                    mobileLink.style.display = 'block';
+                } else {
+                    desktopLink.style.display = 'block';
+                    mobileLink.style.display = 'none';
+                }
+                }
+
+                toggleGetDirections();
+
+                window.addEventListener('resize', toggleGetDirections);
+        </script>
                   
 
         <!--
@@ -101,7 +117,8 @@
       <br>
 
           {{ button({
-                      text: "Request a chest X-ray at this site"
+                      text: "Request a chest X-ray at this site",
+                      href: "./personal-details/sr00-about-you"
                     }) }}
    
 

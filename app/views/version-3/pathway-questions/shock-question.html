@@ -25,7 +25,7 @@
 {% block content_primary %}
 <div class="page-section clearfix">
   <form action="q1" class="measure" method="post">
-    <div id="answers">
+    <div class="app-callout" id="answers">
       <div class="nhsuk-core callout callout--attention">
         <h1 class="nhsuk-u-font-size-19 nhsuk-u-font-weight-normal nhsuk-u-margin-bottom-4">
           {{ page.callout.content.heading }}
@@ -37,7 +37,7 @@
         {% endfor %}
       </div>
     </div>
-    <button class="button--next" id="nextScreen">
+    <button class="nhsuk-button" id="nextScreen">
       {{ page.button.text }}
     </button>
   </form>

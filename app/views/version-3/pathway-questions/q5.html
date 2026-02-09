@@ -1,25 +1,22 @@
 {% set page = {
-  title: 'Have you choked on something in the last 24 hours?',
+  title: 'Do you get a sharp, stabbing pain in your chest or upper back when you breathe deeply?',
   layout: {
     file: layouts.base
-  },
-  question: {
-    callout: {
-      text: "This means something like food, a small object or sick (vomit). We do not need to know about a drink that's gone down the wrong way."
-    }
   },
   answers: [
     {
       id: 'SelectedAnswer',
       value: 'Yes',
       label: 'Yes',
-      testId: 'answer-0'
+      testId: 'answer-0',
+      disabled: true
     },
     {
       id: 'SelectedAnswer_1',
       value: "I'm not sure",
       label: "I'm not sure",
-      testId: 'answer-1'
+      testId: 'answer-1',
+      disabled: true
     },
     {
       id: 'SelectedAnswer_2',
@@ -39,19 +36,13 @@
 {% extends "111/layouts/base.html" %}
 
 {% block content_primary %}
-<form action="q7" method="post" novalidate>
+<form action="q6" method="post" novalidate>
   
   <div class="nhsuk-form-group nhsuk-u-margin-bottom-5 nhsuk-u-reading-width">
-    <fieldset class="nhsuk-fieldset" aria-describedby="selected-answer-rationale">
+    <fieldset class="nhsuk-fieldset">
       <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l nhsuk-u-margin-bottom-5">
         <h1 class="nhsuk-fieldset__heading">{{ page.title }}</h1>
       </legend>
-
-      {% if page.question.callout %}
-      <div class="app-callout app-callout--info" id="selected-answer-rationale" data-test-id="selected-answer-rationale">
-        <p>{{ page.question.callout.text }}</p>
-      </div>
-      {% endif %}
 
       <div class="nhsuk-radios" data-test-id="answers">
         {% for answer in page.answers %}
@@ -62,6 +53,7 @@
             class="nhsuk-radios__input" 
             id="{{ answer.id }}" 
             value="{{ answer.value }}"
+            {% if answer.disabled %}disabled{% endif %}
           >
           <label for="{{ answer.id }}" data-test-id="{{ answer.testId }}" class="nhsuk-label nhsuk-radios__label">
             {{ answer.label }}
@@ -73,7 +65,7 @@
   </div>
 
   <button 
-    class="nhsuk-button" 
+    class="nhsuk-button nhsuk-u-margin-bottom-6" 
     type="submit" 
     name="{{ page.button.name }}" 
     value="{{ page.button.value }}" 
@@ -84,4 +76,9 @@
     {{ page.button.text }}
   </button>
 </form>
+
+<section>
+    <hr class="app-section-break">
+    <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary>
+</section>
 {% endblock %}

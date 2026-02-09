@@ -1,58 +1,68 @@
 {% set page = {
-  title: 'Your GP'
+  title: 'Chest x-ray'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
-{% block beforeContent %}
+<!-- {% block beforeContent %}
   {{ backLink({
     href: "web-what-is-your-age-1",
     text: "Back"
   }) }}
-{% endblock %}
+{% endblock %} -->
 
 {% block content_primary %}
 
-          <form action="a03-find-gp" method="post" class="form">
-          
-            <div class="nhsuk-width-container">
 
+
+          <form action="a02-gp" method="post" class="form">
+
+          <div class="nhsuk-width-container">
             <fieldset class="nhsuk-fieldset">
               <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                 <h1 class="nhsuk-fieldset__heading">
-                 Are you registered with a GP in Leeds?
+                 Have you had a chest X-ray in the last 12 weeks?
                 </h1>
               </legend>
 
-               <div class="app-callout app-callout--info">
-                  <p data-test-id="gender-callout-info-1">You must be registered with a surgery in Leeds to use this service.</p>
+              <!--
+              <div class="app-callout app-callout--info">
+                  <p data-test-id="gender-callout-info-1">Insert explanatory content here if needed.</p>
               </div>
+              -->
           
               <div class="nhsuk-radios">
           
                 <div class="nhsuk-radios__item">
-                  <input class="nhsuk-radios__input" id="gp-1" name="gp" type="radio" value="yes">
-                  <label class="nhsuk-label nhsuk-radios__label" for="gp-1">
+                  <input disabled class="nhsuk-radios__input" id="x-ray-1" name="x-ray" type="radio" value="yes">
+                  <label class="nhsuk-label nhsuk-radios__label" for="x-ray-1">
                     Yes  
                   </label>
                 </div>
 
                  <div class="nhsuk-radios__item">
-                  <input class="nhsuk-radios__input" id="gp-2" name="gp" type="radio" value="no">
-                  <label class="nhsuk-label nhsuk-radios__label" for="gp-2">
-                    No
+                  <input disabled class="nhsuk-radios__input" id="x-ray-2" name="x-ray" type="radio" value="INS">
+                  <label class="nhsuk-label nhsuk-radios__label" for="x-ray-2">
+                    I'm not sure  
                   </label>
                 </div>
           
-               
+                <div class="nhsuk-radios__item">
+                  <input class="nhsuk-radios__input" id="x-ray-3" name="x-ray" type="radio" value="no">
+                  <label class="nhsuk-label nhsuk-radios__label" for="x-ray-3">
+                    No
+                  </label>
+                </div>
 
               </div>
 
               <p></p>
 
             </fieldset>
-        
-            </div>
+       
+          </div>
+
+          
             <br>
          
      

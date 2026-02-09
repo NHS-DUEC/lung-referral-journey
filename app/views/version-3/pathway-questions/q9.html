@@ -3,9 +3,9 @@
   rationale: 'Your tummy, chest or back may feel hot and sweaty when you touch it or you may feel cold and shivery.',
   layout: { file: layouts.base },
   answers: [
-    { id: 'SelectedAnswer', value: "I'm hot and sweaty or cold and shivery or both", label: "I'm hot and sweaty or cold and shivery or both", testId: 'answer-0' },
-    { id: 'SelectedAnswer_1', value: "I have taken my temperature and it's high", label: "I have taken my temperature and it's high", testId: 'answer-1' },
-    { id: 'SelectedAnswer_2', value: "I'm not sure", label: "I'm not sure", testId: 'answer-2' },
+    { id: 'SelectedAnswer', value: "I'm hot and sweaty or cold and shivery or both", label: "I'm hot and sweaty or cold and shivery or both", testId: 'answer-0', disabled: true },
+    { id: 'SelectedAnswer_1', value: "I have taken my temperature and it's high", label: "I have taken my temperature and it's high", testId: 'answer-1', disabled: true },
+    { id: 'SelectedAnswer_2', value: "I'm not sure", label: "I'm not sure", testId: 'answer-2', disabled: true },
     { id: 'SelectedAnswer_3', value: "No", label: "No", testId: 'answer-3' }
   ],
   button: { text: 'Next', name: 'Question', value: 'Question', testId: 'next-button' }
@@ -28,7 +28,7 @@
       <div class="nhsuk-radios" data-test-id="answers">
         {% for answer in page.answers %}
         <div class="nhsuk-radios__item">
-          <input name="SelectedAnswer" type="radio" class="nhsuk-radios__input" id="{{ answer.id }}" value="{{ answer.value }}">
+          <input name="SelectedAnswer" type="radio" class="nhsuk-radios__input" id="{{ answer.id }}" value="{{ answer.value }}" {% if answer.disabled %}disabled{% endif %}>
           <label for="{{ answer.id }}" data-test-id="{{ answer.testId }}" class="nhsuk-label nhsuk-radios__label">
             {{ answer.label }}
           </label>
@@ -38,7 +38,7 @@
     </fieldset>
   </div>
 
-  <button class="nhsuk-button" type="submit" name="{{ page.button.name }}" value="{{ page.button.value }}"
+  <button class="nhsuk-button nhsuk-u-margin-bottom-6" type="submit" name="{{ page.button.name }}" value="{{ page.button.value }}"
           data-inline-spinner
           data-inline-spinner-condition="[data-next-node-label='Outcome']:checked"
           data-module="nhsuk-button"
@@ -47,4 +47,9 @@
     {{ page.button.text }}
   </button>
 </form>
+
+<section>
+    <hr class="app-section-break">
+    <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary>
+</section>
 {% endblock %}

@@ -13,13 +13,15 @@
       id: 'SelectedAnswer',
       value: 'Yes - I have stopped doing everything I usually do',
       label: 'Yes - I have stopped doing everything I usually do',
-      testId: 'answer-0'
+      testId: 'answer-0',
+      disabled: true
     },
     {
       id: 'SelectedAnswer_1',
       value: 'I feel ill, but can do some of my usual activities',
       label: 'I feel ill, but can do some of my usual activities',
-      testId: 'answer-1'
+      testId: 'answer-1',
+      disabled: true
     },
     {
       id: 'SelectedAnswer_2',
@@ -68,6 +70,7 @@
             class="nhsuk-radios__input" 
             id="{{ answer.id }}" 
             value="{{ answer.value }}"
+            {% if answer.disabled %}disabled{% endif %}
           >
           <label for="{{ answer.id }}" data-test-id="{{ answer.testId }}" class="nhsuk-label nhsuk-radios__label">
             {{ answer.label }}
@@ -79,7 +82,7 @@
   </div>
 
   <button 
-    class="nhsuk-button" 
+    class="nhsuk-button nhsuk-u-margin-bottom-6" 
     type="submit" 
     name="{{ page.button.name }}" 
     value="{{ page.button.value }}" 
@@ -90,4 +93,9 @@
     {{ page.button.text }}
   </button>
 </form>
+
+<section>
+    <hr class="app-section-break">
+    <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary>
+</section>
 {% endblock %}
