@@ -1,67 +1,89 @@
 {% set page = {
-  title: 'Home address'
+  title: 'Home postcode'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
 
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-a-e-visit",
-    text: "Back"
-  }) }}
-{% endblock %}
 
 {% block content_primary %}
     
     <form action="sr06-home-postcode" method="post" class="form">
-        <div class="nhsuk-form-group">
+
+        <!-- Error summary -->
+        {% if data.error %}
+        <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+          <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="nhsuk-error-summary__body">
+            <ul class="nhsuk-list nhsuk-error-summary__list">
+              {% if data.error == 'select' %}
+              <li><a href="#is-home-postcode-1">Select yes if this is your home postcode</a></li>
+              {% elif data.error == 'postcode-missing' %}
+              <li><a href="#home-postcode">Enter your home postcode</a></li>
+              {% elif data.error == 'postcode-invalid' %}
+              <li><a href="#home-postcode">Enter a valid UK postcode</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="nhsuk-form-group {% if data.error == 'select' %}nhsuk-form-group--error{% endif %}">
             <fieldset class="nhsuk-fieldset" aria-describedby="contact-hint">
                 <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                     <h1 class="nhsuk-fieldset__heading">
-                    Is LS9 8QS
-                        <!-- {{ data.CurrentPostcode3 }} -->
-                    your home postcode?
+                        Is LS9 8QS your home postcode?
                     </h1>
                 </legend>
+
+                {% if data.error == 'select' %}
+                <span class="nhsuk-error-message" id="is-home-postcode-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Select yes if this is your home postcode
+                </span>
+                {% endif %}
                                         
-      
-                    <div class="nhsuk-radios" data-module="nhsuk-radios">
-                                        <div class="nhsuk-radios__item">
-                                            <input class="nhsuk-radios__input" id="is-home-postcode-1" name="is-home-postcode-1" type="radio" value="yes" data-aria-controls="conditional-postcode">
-                                            <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-1">
-                                            Yes
-                                            </label>
-                                        </div>
-                                        
-                                        <div class="nhsuk-radios__item">
-                                            <input class="nhsuk-radios__input" id="is-home-postcode-2" name="is-home-postcode-2" type="radio" value="no" data-aria-controls="conditional-postcode-2">
-                                            <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-2">
-                                            No
-                                            </label>
-                                        </div>
-                                        <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-postcode-2">
-                                            <div class="nhsuk-form-group">
-                                            <label class="nhsuk-label" for="home_postcode">
-                                                Your home postcode
-                                            </label>
-                                            <input class="nhsuk-input nhsuk-u-width-two-thirds" id="home_postcode" name="home_postcode" type="text">
-                                            </div>
-                                        </div>
-                                                  
+                <div class="nhsuk-radios" data-module="nhsuk-radios">
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="is-home-postcode-1" name="is-home-postcode" type="radio" value="yes" {{ "checked" if data['is-home-postcode'] == "yes" }}>
+                        <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-1">
+                            Yes
+                        </label>
                     </div>
-                </fieldset>
-         </div>
+                    
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="is-home-postcode-2" name="is-home-postcode" type="radio" value="no" aria-controls="conditional-postcode" aria-expanded="false" {{ "checked" if data['is-home-postcode'] == "no" }}>
+                        <label class="nhsuk-label nhsuk-radios__label" for="is-home-postcode-2">
+                            No
+                        </label>
+                    </div>
+                    <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-postcode">
+                        <div class="nhsuk-form-group {% if data.error == 'postcode-missing' or data.error == 'postcode-invalid' %}nhsuk-form-group--error{% endif %}">
+                            <label class="nhsuk-label" for="home-postcode">
+                                Your home postcode
+                            </label>
+                            {% if data.error == 'postcode-missing' %}
+                            <span class="nhsuk-error-message" id="home-postcode-error">
+                              <span class="nhsuk-u-visually-hidden">Error:</span> Enter your home postcode
+                            </span>
+                            {% elif data.error == 'postcode-invalid' %}
+                            <span class="nhsuk-error-message" id="home-postcode-error">
+                              <span class="nhsuk-u-visually-hidden">Error:</span> Enter a valid UK postcode
+                            </span>
+                            {% endif %}
+                            <input class="nhsuk-input nhsuk-u-width-two-thirds {% if data.error == 'postcode-missing' or data.error == 'postcode-invalid' %}nhsuk-input--error{% endif %}" id="home-postcode" name="home-postcode" type="text" value="{{ data['home-postcode'] }}">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
 
+        <br>
 
-
-            <br>
-
-               {{ button({
-          text: "Next",
-          href: "sr07-home-address"
+        {{ button({
+          text: "Next"
         }) }}
-
             
     </form>
   
@@ -109,34 +131,10 @@
                                           </div>
 
                                           <label for="feedback-text" class="nhsuk-label">Your feedback</label>                            
-                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info" data-autosize="" data-original-aria-describedby="feedback-contact-warning feedback-text-info" style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 152px;"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div><div class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status nhsuk-character-count__message--disabled" aria-hidden="true">You have 1200 characters remaining</div><div class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden" aria-live="polite" aria-hidden="true">You have 1200 characters remaining</div>
+                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div>
                                       </div>
                                     </div>
                         </fieldset>
-
-                        <script type="application/json" data-feedback-form-section-validation-rules="">
-                        [
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "required",
-                              "message": "Enter your feedback"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "maxlength",
-                              "maxlength": 1200,
-                              "message": "Feedback should be fewer than 1200 characters long"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "PID",
-                              "message": "Your feedback cannot include any personal information or contact details"
-                          }
-                        ]
-                        </script>
 
                         <div class="nhsuk-back-link"><button class="nhsuk-back-link__link" href="#">
                             <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">

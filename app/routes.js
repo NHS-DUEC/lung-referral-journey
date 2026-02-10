@@ -9,6 +9,7 @@ const router = express.Router()
 // ########################################################
 
 router.use('/version-1', require('./routes/version-1'))
+router.use('/version-3', require('./routes/version-3'))
 
 // ########################################################
 module.exports = router

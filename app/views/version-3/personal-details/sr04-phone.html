@@ -8,56 +8,60 @@
 {% block content_primary %}
 
     <form action="sr04-phone" method="post" class="form">
-           <!--
-            <input type="hidden" name="SessionId" value="cf3da228-aefe-40bc-83de-bdba5998d26c">
-            <input type="hidden" name="FilterServices" value="True">
-            <input type="hidden" name="CurrentPostcode" value="GU216XS">
-            <input type="hidden" name="Campaign" value="NHS Surrey Heartlands Integrated Care Board">
-            <input type="hidden" name="Source" value="NHS Surrey Heartlands ICB - 92A">
-            <input type="hidden" name="StartParameter" value="">
-            <input type="hidden" name="PathwayNo" value="">
-            <input type="hidden" name="JourneyType" value="Default">
-            <input type="hidden" name="NhsLoginConsent" value="ConsentNotApplicable">
-            <input type="hidden" name="InformantType" value="NotSpecified">
-            <input type="hidden" name="ViewName" value="Age">
-          -->
+
+      <!-- Error summary -->
+      {% if data.error %}
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          <ul class="nhsuk-list nhsuk-error-summary__list">
+            {% if data.error == 'missing' %}
+            <li><a href="#TelephoneNumber">Enter your phone number</a></li>
+            {% elif data.error == 'invalid' %}
+            <li><a href="#TelephoneNumber">Enter a valid UK phone number</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
       <fieldset class="nhsuk-fieldset">
 
-        <div class="nhsuk-form-group  nhsuk-u-margin-bottom-5">
-          <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label nhsuk-label--l nhsuk-u-margin-bottom-5" data-test-id="heading-text" for="UserInfo_Age_Age">
+        <div class="nhsuk-form-group nhsuk-u-margin-bottom-5">
+          <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label nhsuk-label--l nhsuk-u-margin-bottom-5" data-test-id="heading-text" for="TelephoneNumber">
              What is your phone number?
              </label>
           </h1>
-          
         </div>
 
         <div class="app-callout app-callout--info">
-                  <p data-test-id="gender-callout-info-1">We need this in case the hospital has to contact you for any reason.</p>
-              </div>
+          <p data-test-id="gender-callout-info-1">We need this in case the hospital has to contact you for any reason.</p>
+        </div>
 
-        <div class="nhsuk-form-group">
-        <label class="nhsuk-label" data-test-id="telephonenumber-label" for="TelephoneNumber">Enter a mobile or landline number</label>
-        <input data-test-id="telephonenumber-input" inputmode="tel" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="TelephoneNumber" name="TelephoneNumber"></div>
+        <div class="nhsuk-form-group {% if data.error %}nhsuk-form-group--error{% endif %}">
+          <label class="nhsuk-label" data-test-id="telephonenumber-label" for="TelephoneNumber">Enter a mobile or landline number</label>
+          {% if data.error %}
+          <span class="nhsuk-error-message" id="phone-error">
+            <span class="nhsuk-u-visually-hidden">Error:</span>
+            {% if data.error == 'missing' %}Enter your phone number
+            {% elif data.error == 'invalid' %}Enter a valid UK phone number
+            {% endif %}
+          </span>
+          {% endif %}
+          <input data-test-id="telephonenumber-input" inputmode="tel" value="{{ data.TelephoneNumber }}" class="nhsuk-input nhsuk-input--width-20 {% if data.error %}nhsuk-input--error{% endif %}" type="text" id="TelephoneNumber" name="TelephoneNumber" aria-describedby="phone-hint">
+        </div>
 
         <br>
 
-        
-    
-       
-
-        <!--
-        <button data-test-id="next-button" type="submit" class="nhsuk-button " data-module="nhsuk-button">Next</button>
-        -->
-
-          {{ button({
-          text: "Next",
-          href: "sr05-email"
+        {{ button({
+          text: "Next"
         }) }}
 
       </fieldset>
 
       <br>
-         
     
     </form>
 
@@ -105,34 +109,10 @@
                                           </div>
 
                                           <label for="feedback-text" class="nhsuk-label">Your feedback</label>                            
-                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info" data-autosize="" data-original-aria-describedby="feedback-contact-warning feedback-text-info" style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 152px;"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div><div class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status nhsuk-character-count__message--disabled" aria-hidden="true">You have 1200 characters remaining</div><div class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden" aria-live="polite" aria-hidden="true">You have 1200 characters remaining</div>
+                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div>
                                       </div>
                                     </div>
                         </fieldset>
-
-                        <script type="application/json" data-feedback-form-section-validation-rules="">
-                        [
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "required",
-                              "message": "Enter your feedback"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "maxlength",
-                              "maxlength": 1200,
-                              "message": "Feedback should be fewer than 1200 characters long"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "PID",
-                              "message": "Your feedback cannot include any personal information or contact details"
-                          }
-                        ]
-                        </script>
 
                         <div class="nhsuk-back-link"><button class="nhsuk-back-link__link" href="#">
                             <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">

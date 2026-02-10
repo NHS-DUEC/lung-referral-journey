@@ -7,37 +7,59 @@
 {% block content_primary %}
 
           <form action="sr02-name" method="post" class="form">
-          
-         <!-- <div class="nhsuk-width-container"> -->
 
-            <fieldset class="nhsuk-fieldset"><legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" data-test-id="heading-text"><h1 class="nhsuk-fieldset__heading">What is your name?</h1></legend>
+            <!-- Error summary -->
+            {% if data.error %}
+            <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+              <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+                There is a problem
+              </h2>
+              <div class="nhsuk-error-summary__body">
+                <ul class="nhsuk-list nhsuk-error-summary__list">
+                  {% if data.error == 'forename' or data.error == 'both' %}
+                  <li><a href="#Forename">Enter your first name</a></li>
+                  {% endif %}
+                  {% if data.error == 'surname' or data.error == 'both' %}
+                  <li><a href="#Surname">Enter your last name</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+            {% endif %}
 
-                <div class="nhsuk-form-group">
-                  <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label" data-test-id="patient-forename-label" for="Forename">First name</label>
-                  </h1>
-                  <input data-test-id="patient-forename-input" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="Forename" name="Forename">
-                </div>
+            <fieldset class="nhsuk-fieldset">
+              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" data-test-id="heading-text">
+                <h1 class="nhsuk-fieldset__heading">What is your name?</h1>
+              </legend>
 
-                <div class="nhsuk-form-group">
-                  <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label" data-test-id="patient-surname-label" for="Surname">Last name</label>
-                  </h1>
-                  <input data-test-id="patient-surname-input" value="" class="nhsuk-input nhsuk-input--width-20" type="text" id="Surname" name="Surname">
-                </div>
+              <div class="nhsuk-form-group {% if data.error == 'forename' or data.error == 'both' %}nhsuk-form-group--error{% endif %}">
+                <label class="nhsuk-label" data-test-id="patient-forename-label" for="Forename">First name</label>
+                {% if data.error == 'forename' or data.error == 'both' %}
+                <span class="nhsuk-error-message" id="forename-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter your first name
+                </span>
+                {% endif %}
+                <input data-test-id="patient-forename-input" value="{{ data.Forename }}" class="nhsuk-input nhsuk-input--width-20 {% if data.error == 'forename' or data.error == 'both' %}nhsuk-input--error{% endif %}" type="text" id="Forename" name="Forename">
+              </div>
+
+              <div class="nhsuk-form-group {% if data.error == 'surname' or data.error == 'both' %}nhsuk-form-group--error{% endif %}">
+                <label class="nhsuk-label" data-test-id="patient-surname-label" for="Surname">Last name</label>
+                {% if data.error == 'surname' or data.error == 'both' %}
+                <span class="nhsuk-error-message" id="surname-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter your last name
+                </span>
+                {% endif %}
+                <input data-test-id="patient-surname-input" value="{{ data.Surname }}" class="nhsuk-input nhsuk-input--width-20 {% if data.error == 'surname' or data.error == 'both' %}nhsuk-input--error{% endif %}" type="text" id="Surname" name="Surname">
+              </div>
             </fieldset>
-        
-         <!--   </div> -->
-            <br>
-         
-    
 
-      
-       <!-- button and radio buttons need to be on the same form! -->
-        {{ button({
-          text: "Next",
-          href: "sr03-dob"
-        }) }}
+            <br>
+
+            {{ button({
+              text: "Next"
+            }) }}
         
-      </form>
+          </form>
 
       
       <hr class="app-section-break">
@@ -82,34 +104,10 @@
                                           </div>
 
                                           <label for="feedback-text" class="nhsuk-label">Your feedback</label>                            
-                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info" data-autosize="" data-original-aria-describedby="feedback-contact-warning feedback-text-info" style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 152px;"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div><div class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status nhsuk-character-count__message--disabled" aria-hidden="true">You have 1200 characters remaining</div><div class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden" aria-live="polite" aria-hidden="true">You have 1200 characters remaining</div>
+                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div>
                                       </div>
                                     </div>
                         </fieldset>
-
-                        <script type="application/json" data-feedback-form-section-validation-rules="">
-                        [
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "required",
-                              "message": "Enter your feedback"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "maxlength",
-                              "maxlength": 1200,
-                              "message": "Feedback should be fewer than 1200 characters long"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "PID",
-                              "message": "Your feedback cannot include any personal information or contact details"
-                          }
-                        ]
-                        </script>
 
                         <div class="nhsuk-back-link"><button class="nhsuk-back-link__link" href="#">
                             <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
@@ -124,8 +122,5 @@
           </div>
         </details>
       </section>
-   
-
-  
 
 {% endblock %}

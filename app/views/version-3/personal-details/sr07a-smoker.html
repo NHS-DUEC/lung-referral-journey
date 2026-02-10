@@ -1,0 +1,95 @@
+{% set page = {
+  title: 'Are you a smoker?'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+
+{% block content_primary %}
+
+    <form action="sr07a-smoker" method="post" class="form">
+
+      <!-- Error summary -->
+      {% if data.error %}
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          <ul class="nhsuk-list nhsuk-error-summary__list">
+            <li><a href="#smoker-1">Select an option</a></li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="nhsuk-form-group {% if data.error %}nhsuk-form-group--error{% endif %}">
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              Are you a smoker?
+            </h1>
+          </legend>
+
+          {% if data.error %}
+          <span class="nhsuk-error-message" id="smoker-error">
+            <span class="nhsuk-u-visually-hidden">Error:</span> Select an option
+          </span>
+          {% endif %}
+
+          <div class="nhsuk-radios">
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="smoker-1" name="smoker" type="radio" value="yes" {{ "checked" if data.smoker == "yes" }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="smoker-1">
+                Yes
+              </label>
+            </div>
+
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="smoker-2" name="smoker" type="radio" value="used-to" {{ "checked" if data.smoker == "used-to" }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="smoker-2">
+                I used to smoke
+              </label>
+            </div>
+
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="smoker-3" name="smoker" type="radio" value="never" {{ "checked" if data.smoker == "never" }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="smoker-3">
+                I have never smoked
+              </label>
+            </div>
+
+            <div class="nhsuk-radios__item">
+              <input class="nhsuk-radios__input" id="smoker-4" name="smoker" type="radio" value="prefer-not-to-say" {{ "checked" if data.smoker == "prefer-not-to-say" }}>
+              <label class="nhsuk-label nhsuk-radios__label" for="smoker-4">
+                I do not want to answer
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+      <br>
+
+      {{ button({
+        text: "Next"
+      }) }}
+
+    </form>
+
+    <hr class="app-section-break">
+
+    <!-- Does this page make sense section -->
+    <section>
+      <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width">
+        <summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal">
+          <span class="nhsuk-details__summary-text">Does this page make sense?</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>Feedback form placeholder</p>
+        </div>
+      </details>
+    </section>
+
+{% endblock %}

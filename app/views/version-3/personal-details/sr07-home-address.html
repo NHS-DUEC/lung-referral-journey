@@ -4,52 +4,31 @@
 
 {% extends page.layout.file | d(layouts.base) %}
 
-
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-a-e-visit",
-    text: "Back"
-  }) }}
-{% endblock %}
-
 {% block content_primary %}
-      <form method="post" action="sr08-check-details" class="form">
+      <form method="post" action="sr07a-smoker" class="form">
         <div class="nhsuk-width-container">
 
            <h1 data-test-id="heading-text" class="nhsuk-heading-l">What is your home address at LS9 8QS?</h1>
 
 
                         <ul class="app-option-list">
-                <li class=""><button type="submit" data-test-id="address-option-button" name="currentAddress" value="50265434" class="app-button--link app-option-list__button">1 Viking Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
+                <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="50265434" class="app-button--link app-option-list__button">1 Viking Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
                 <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452586" class="app-button--link app-option-list__button">1-2 Saxon Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
                 <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452581" class="app-button--link app-option-list__button">Ambulance Station, 2 Viking Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
                 <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452583" class="app-button--link app-option-list__button">Virgin Media, 2 Viking Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
                 <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="7452582" class="app-button--link app-option-list__button">5 Saxon Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
                 <li class="app-option-list__item"><button type="submit" data-test-id="address-option-button" name="currentAddress" value="54672599" class="app-button--link app-option-list__button">Yess Electrical, 6c-6d Saxon Court, Europa Park, Grimsby, South Humberside, DN31 2UJ</button></li>
-        </ul>
+                          </ul>
 
                         <br>
+
+            <hr class="app-section-break">
 
             <button type="submit" data-test-id="address-not-shown" name="currentAddress" value="AddressNotListed" class="app-button--link nhsuk-u-margin-bottom-4">My home address is not any of these above</button>
           </div>          
 
                     
       </form>
-              <!--
-              <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="I am unable to book a call"><span class="nhsuk-details__summary-text">I am unable to book a call</span></summary><div class="nhsuk-details__text">
-                  <p>
-                  Local NHS callback services are currently only available on the phone.
-                  There are <a href="/Help/OtherWays" target="_blank" data-event-trigger="click" data-event-value="Other ways to contact 111">other ways to contact 111<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>, but unfortunately, you'll have to provide all your answers again.
-              </p>
-              </div></details>
-              
-              --> 
-
-        
-
-
-  
-    
 
       <hr class="app-section-break">
 
@@ -93,34 +72,10 @@
                                           </div>
 
                                           <label for="feedback-text" class="nhsuk-label">Your feedback</label>                            
-                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info" data-autosize="" data-original-aria-describedby="feedback-contact-warning feedback-text-info" style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 152px;"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div><div class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status nhsuk-character-count__message--disabled" aria-hidden="true">You have 1200 characters remaining</div><div class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden" aria-live="polite" aria-hidden="true">You have 1200 characters remaining</div>
+                                          <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div>
                                       </div>
                                     </div>
                         </fieldset>
-
-                        <script type="application/json" data-feedback-form-section-validation-rules="">
-                        [
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "required",
-                              "message": "Enter your feedback"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "maxlength",
-                              "maxlength": 1200,
-                              "message": "Feedback should be fewer than 1200 characters long"
-                          },
-                          {
-                              "id": "feedback-text",
-                              "name": "Text",
-                              "rule": "PID",
-                              "message": "Your feedback cannot include any personal information or contact details"
-                          }
-                        ]
-                        </script>
 
                         <div class="nhsuk-back-link"><button class="nhsuk-back-link__link" href="#">
                             <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
@@ -136,8 +91,5 @@
         </details>
       </section>
    
-
-
-  
 
 {% endblock %}

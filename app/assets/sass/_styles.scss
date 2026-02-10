@@ -5,7 +5,27 @@
 // specific instance of the 111 Online Prototype Kit.
 // #########################################################
 
-.your-selector {
-  content: 'this is a demo selector'
+// Option list component
+.app-option-list {
+  list-style: none;
+  padding-left: 0;
 }
 
+.app-option-list__item {
+  @include nhsuk-responsive-margin(4, "bottom");
+  background-color: $color_nhsuk-white;
+}
+
+.app-option-list__button {
+  border: 1px solid $color_nhsuk-grey-4;
+  border-left-width: 4px;
+  padding: nhsuk-spacing(4) nhsuk-spacing(3);
+  width: 100%;
+}
+
+.app-option-list__button:hover,
+.app-option-list__button:focus {
+  color: #fff;
+  background-color: $nhsuk-link-color;
+  border-color: $nhsuk-link-color;
+}
