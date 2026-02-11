@@ -156,16 +156,12 @@ router.post('/personal-details/sr06-home-postcode', function(req, res) {
   res.redirect('sr07-home-address')
 })
 
-// sr07-home-address - update to redirect to sr07a-smoker
+// sr07-home-address
 router.post('/personal-details/sr07-home-address', function(req, res) {
-  let address = req.session.data['currentAddress']
-
-  if (!address) {
-    res.redirect('sr07-home-address?error=address')
-    return
-  }
-
+  // Clear any previous errors
   req.session.data['error'] = null
+  
+  // Redirect to smoker page
   res.redirect('sr07a-smoker')
 })
 
@@ -174,8 +170,8 @@ router.post('/personal-details/sr07a-smoker', function(req, res) {
   let smoker = req.session.data['smoker']
 
   if (!smoker) {
-    res.redirect('sr07a-smoker?error=smoker')
-    return
+    req.session.data['error'] = 'smoker'
+    return res.redirect('sr07a-smoker')
   }
 
   req.session.data['error'] = null

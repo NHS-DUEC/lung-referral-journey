@@ -10,7 +10,7 @@
     <form action="sr07a-smoker" method="post" class="form">
 
       <!-- Error summary -->
-      {% if data.error %}
+      {% if data.error == 'smoker' %}
       <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
         <h2 class="nhsuk-error-summary__title" id="error-summary-title">
           There is a problem
