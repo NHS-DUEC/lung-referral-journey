@@ -5,55 +5,60 @@
 {% extends page.layout.file | d(layouts.base) %}
 
 
-{% block beforeContent %}
-  {{ backLink({
-    href: "web-a-e-visit",
-    text: "Back"
-  }) }}
-{% endblock %}
-
 {% block content_primary %}
 
+<form method="post" action="sr08b-acknowledge-gp-3" class="form">
 
+  <!-- Error summary -->
+  {% if data.error == 'acknowledgement' %}
+  <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+    <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+      There is a problem
+    </h2>
+    <div class="nhsuk-error-summary__body">
+      <ul class="nhsuk-list nhsuk-error-summary__list">
+        <li><a href="#acknowledgement">Select to confirm you understand</a></li>
+      </ul>
+    </div>
+  </div>
+  {% endif %}
 
-              <div class="nhsuk-warning-callout">
-                  <h3 class="nhsuk-warning-callout__label">
-                    <span role="text">
-                      <span class="nhsuk-u-visually-hidden">2 weeks after your X-ray</span>
-                      2 weeks after your X-ray
-                    </span>
-                  </h3>
-                  <p>You <b>must</b> contact your GP surgery for the results. They will not contact you.</p>
+  <div class="nhsuk-warning-callout">
+    <h3 class="nhsuk-warning-callout__label">
+      <span role="text">
+        <span class="nhsuk-u-visually-hidden">Important: </span>
+        2 weeks after your X-ray
+      </span>
+    </h3>
+    <p>You <b>must</b> contact your GP surgery for the results. They will not contact you.</p>
+    <p>Your GP might want to do other checks, like blood tests.</p>
+  </div>
 
-                    <p>Your GP might want to do other checks, like blood tests.</p>
+  <div class="nhsuk-form-group {% if data.error == 'acknowledgement' %}nhsuk-form-group--error{% endif %}">
+    
+    {% if data.error == 'acknowledgement' %}
+    <span class="nhsuk-error-message" id="acknowledgement-error">
+      <span class="nhsuk-u-visually-hidden">Error:</span> Select to confirm you understand
+    </span>
+    {% endif %}
 
-              </div>
+    <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
+      <div class="nhsuk-checkboxes__item">
+        <input class="nhsuk-checkboxes__input" id="acknowledgement" name="acknowledgement" type="checkbox" value="yes" {{ "checked" if data.acknowledgement == "yes" }}>
+        <label class="nhsuk-label nhsuk-checkboxes__label" for="acknowledgement">
+          I understand
+        </label>
+      </div>
+    </div>
+  </div>
 
-       
-      
-                    
-     
-              <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
-                <div class="nhsuk-checkboxes__item">
-                  <input class="nhsuk-checkboxes__input" id="acknowledgement" name="acknowledgement" type="checkbox" value="acknowledgement">
-                  <label class="nhsuk-label nhsuk-checkboxes__label" for="acknowledgement">
-                    I understand
-                  </label>
-                </div>
-               
-                <br>
-           
+  <br>
 
+  {{ button({
+    text: "Next"
+  }) }}
 
-
-            <form method="post">
-                  
-                    {{ button({
-                      text: "Next", 
-                      href: "web-where-are-you-now-3"
-                    }) }}
-                    
-             </form>
+</form>
               <!--
               <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="I am unable to book a call"><span class="nhsuk-details__summary-text">I am unable to book a call</span></summary><div class="nhsuk-details__text">
                   <p>

@@ -13,6 +13,7 @@ router.post('/personal-details/sr02-name', function(req, res) {
   } else if (!surname) {
     res.redirect('sr02-name?error=surname')
   } else {
+    req.session.data['error'] = null
     res.redirect('sr03-dob')
   }
 })
@@ -183,8 +184,8 @@ router.post('/personal-details/sr07b-extra-help', function(req, res) {
   let extraHelp = req.session.data['extra-help']
 
   if (!extraHelp) {
-    res.redirect('sr07b-extra-help?error=extra-help')
-    return
+    req.session.data['error'] = 'extra-help'
+    return res.redirect('sr07b-extra-help')
   }
 
   req.session.data['error'] = null
@@ -196,12 +197,38 @@ router.post('/personal-details/sr07c-interpreter', function(req, res) {
   let interpreter = req.session.data['interpreter']
 
   if (!interpreter) {
-    res.redirect('sr07c-interpreter?error=interpreter')
-    return
+    req.session.data['error'] = 'interpreter'
+    return res.redirect('sr07c-interpreter')
   }
 
   req.session.data['error'] = null
   res.redirect('sr08-check-details')
+})
+
+// sr08-check-details - redirect to acknowledgement page
+router.post('/personal-details/sr08-check-details', function(req, res) {
+  // Clear error AND reset acknowledgement checkbox for fresh start
+  req.session.data['error'] = null
+  req.session.data['acknowledgement'] = null
+  res.redirect('../confirmation/sr08b-acknowledge-gp-3')
+})
+
+// sr08b-acknowledge-gp-3 - validate checkbox and redirect to confirmation
+router.post('/confirmation/sr08b-acknowledge-gp-3', function(req, res) {
+  let acknowledgement = req.session.data['acknowledgement']
+
+  if (!acknowledgement) {
+    req.session.data['error'] = 'acknowledgement'
+    return res.redirect('sr08b-acknowledge-gp-3')
+  }
+
+  req.session.data['error'] = null
+  res.redirect('sr09-confirmation')
+})
+
+// sr09-confirmation - redirect to receipt
+router.post('/confirmation/sr09-confirmation', function(req, res) {
+  res.redirect('sr09-receipt')
 })
 
 module.exports = router
