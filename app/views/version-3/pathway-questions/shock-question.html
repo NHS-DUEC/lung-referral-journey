@@ -1,15 +1,15 @@
 {% set page = {
-  title: "We'll now ask you questions about your symptoms",
+  title: "What will happen next",
   layout: {
     file: layouts.base
   },
   callout: {
     type: 'attention',
     content: {
-      heading: "We'll now ask you questions about your symptoms.",
+      heading: "What will happen next",
       paragraphs: [
-        "Some might not seem relevant, but they help us rule things out. We rule out serious conditions first. The more questions there are the less serious it's likely to be.",
-        "You won't get a diagnosis, but you will find out what to do next."
+        "We will ask you some questions about your symptoms.","Some might not seem relevant, but they help us rule things out.", "You will not get a diagnosis, but we will tell you where to get help.",
+        "If we recommend you speak to someone, you should tell them about any long term conditions you might have."
       ]
     }
   },
@@ -25,21 +25,22 @@
 {% block content_primary %}
 <div class="page-section clearfix">
   <form action="q1" class="measure" method="post">
-    <div class="app-callout" id="answers">
+    <div id="answers">
       <div class="nhsuk-core callout callout--attention">
-        <h1 class="nhsuk-u-font-size-19 nhsuk-u-font-weight-normal nhsuk-u-margin-bottom-4">
+        <h1 class="nhsuk-u-margin-bottom-4">
           {{ page.callout.content.heading }}
         </h1>
         {% for paragraph in page.callout.content.paragraphs %}
-          <p{% if loop.last %} class="nhsuk-u-margin-bottom-0"{% endif %}>
+          <p{% if loop.last %} class="nhsuk-u-margin-bottom-5"{% endif %}>
             {{ paragraph }}
           </p>
         {% endfor %}
       </div>
     </div>
-    <button class="nhsuk-button" id="nextScreen">
+    <button class="nhsuk-button nhsuk-u-margin-bottom-5" id="nextScreen">
       {{ page.button.text }}
     </button>
   </form>
+  <a href="javascript:history.back()" style="text-decoration: underline; cursor: pointer;" class="nhsuk-u-margin-top-4">Previous question</a>
 </div>
 {% endblock %}
