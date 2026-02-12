@@ -12,152 +12,200 @@
 
             <!-- Add content here -->
             <!-- Styles and components can be found at https://service-manual.nhs.uk/design-system -->
-      <form action="../confirmation/sr09-confirmation" method="post" class="form"> 
-      <div class="nhsuk-form-group">
-
-        <fieldset class="nhsuk-fieldset">
-          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-            <h1 class="nhsuk-fieldset__heading">
-              Check details for your chest x-ray request
-            </h1>
-          </legend>
-        
-
-       <!-- <p>Insert content if needed.</p> -->
-        <br> 
-          
-          
-          <dl class="nhsuk-summary-list nhsuk-summary-list">
-            
-            <div class="nhsuk-summary-list__row">
-              <dt class="nhsuk-summary-list__key">
-                Name
-              </dt>
-              <dd class="nhsuk-summary-list__value">
-                John Smith
-               <!-- <p>{{ data.CurrentPostcode3 }}</p> -->
-              </dd>
-              <dd class="nhsuk-summary-list__actions">
-
-                <a href="#">
-                  Change<span class="nhsuk-u-visually-hidden"> name</span>
-                </a>
-          
-              </dd>
-            </div>
-          
-            <div class="nhsuk-summary-list__row">
-              <dt class="nhsuk-summary-list__key">
-               Date of birth
-              </dt>
-              <dd class="nhsuk-summary-list__value">
-                5 March 1975
-                <!--  <p>{{ data.HomePostcode }}</p>  -->
-              </dd>
-              <dd class="nhsuk-summary-list__actions">
-
-                <a href="#">
-                  Change<span class="nhsuk-u-visually-hidden"> date of birth</span>
-                </a>
-          
-              </dd>
-            </div>
-
-            
-
-            <div class="nhsuk-summary-list__row">
-              <dt class="nhsuk-summary-list__key">
-                Phone number
-              </dt>
-              <dd class="nhsuk-summary-list__value">
-                07123 456 789
-                <!-- <p>{{ data.UserInfoAge }}</p> -->
-                
-              </dd>
-              <dd class="nhsuk-summary-list__actions">
-
-                <a href="#">
-                  Change<span class="nhsuk-u-visually-hidden"> phone</span>
-                </a>
-          
-              </dd>
-            </div>
-
-            <div class="nhsuk-summary-list__row">
-              <dt class="nhsuk-summary-list__key">
-                Email address
-              </dt>
-              <dd class="nhsuk-summary-list__value">
-                john.smith@gmail.com
-                <!-- <p>{{ data.TelephoneNumber }}</p> -->
-                
-              </dd>
-              <dd class="nhsuk-summary-list__actions">
-
-                <a href="#">
-                  Change<span class="nhsuk-u-visually-hidden"> email</span>
-                </a>
-          
-              </dd>
-            </div>
-
-            <div class="nhsuk-summary-list__row">
-            <dt class="nhsuk-summary-list__key">
-              Home address
-            </dt>
-            <dd class="nhsuk-summary-list__value">
-              8 Bridgewater Place<br>Leeds<br>LS11 5BZ
-            </dd>
-            <dd class="nhsuk-summary-list__actions">
-              <a class="nhsuk-link" href="#">Change<span class="nhsuk-u-visually-hidden"> home address</span></a>
-            </dd>
-          </div>
-
-          <div class="nhsuk-summary-list__row">
-            <dt class="nhsuk-summary-list__key">
-              GP practice
-            </dt>
-            <dd class="nhsuk-summary-list__value">
-              2nd Floor, Beeston, 123 Cemetery Rd<br>Leeds<br>LS11 8LH
-              
-            </dd>
-            <dd class="nhsuk-summary-list__actions">
-              <a class="nhsuk-link" href="#">Change<span class="nhsuk-u-visually-hidden"> GP</span></a>
-            </dd>
-          </div>
-
-
-          <div class="nhsuk-summary-list__row">
-            <dt class="nhsuk-summary-list__key">
-              X-ray site
-            </dt>
-            <dd class="nhsuk-summary-list__value">
-              St James's University Hospital<br>Beckett St, Harehills<br>Leeds<br>LS9 7TF
+             <form action="sr08-check-details" method="post" class="form"> 
+  <div class="nhsuk-form-group">
+    <fieldset class="nhsuk-fieldset">
+      <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+        <h1 class="nhsuk-fieldset__heading">
+          Check details for your chest x-ray request
+        </h1>
+      </legend>
     
-            </dd>
-            <dd class="nhsuk-summary-list__actions">
-              <a class="nhsuk-link" href="#">Change<span class="nhsuk-u-visually-hidden"> x-ray site</span></a>
-            </dd>
-          </div>
-          
-          </dl>
-          
-          
-          
-        </fieldset>
+      <br> 
+      
+      <dl class="nhsuk-summary-list">
         
-               
-                {{ button({
-                  text: "Confirm my request"
-                }) }}
-                
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {{ data.Forename }} {{ data.Surname }}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr02-name">
+              Change<span class="nhsuk-u-visually-hidden"> name</span>
+            </a>
+          </dd>
+        </div>
+      
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Date of birth
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {{ data['dob-day'] }} / {{ data['dob-month'] }} / {{ data['dob-year'] }}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr03-dob">
+              Change<span class="nhsuk-u-visually-hidden"> date of birth</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Phone number
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {{ data.TelephoneNumber }}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr04-phone">
+              Change<span class="nhsuk-u-visually-hidden"> phone number</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Email address
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {{ data.EmailAddress if data.EmailAddress else 'Not provided' }}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr05-email">
+              Change<span class="nhsuk-u-visually-hidden"> email address</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Home address
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            8 Bridgewater Place<br>Leeds<br>LS9 8QS
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr07-home-address">
+              Change<span class="nhsuk-u-visually-hidden"> home address</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            GP practice
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            2nd Floor, Beeston, 123 Cemetery Rd<br>Leeds<br>LS11 8LH
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> GP practice</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            X-ray site
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            St James's University Hospital<br>Beckett St, Harehills<br>Leeds<br>LS9 7TF
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> x-ray site</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Smoking status
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {% if data.smoker == 'yes' %}
+              Yes
+            {% elif data.smoker == 'used-to' %}
+              Used to smoke
+            {% elif data.smoker == 'never' %}
+              Never smoked
+            {% elif data.smoker == 'prefer-not-to-say' %}
+              Prefer not to say
+            {% endif %}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr07a-smoker">
+              Change<span class="nhsuk-u-visually-hidden"> smoking status</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Extra help at x-ray site
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {% if data['extra-help'] == 'yes' %}
+              Yes
+            {% elif data['extra-help'] == 'no' %}
+              No
+            {% endif %}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr07b-extra-help">
+              Change<span class="nhsuk-u-visually-hidden"> extra help at x-ray site</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Interpreter at x-ray site
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            {% if data.interpreter == 'yes' %}
+              Yes
+            {% elif data.interpreter == 'no' %}
+              No
+            {% endif %}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="sr07c-interpreter">
+              Change<span class="nhsuk-u-visually-hidden"> interpreter at x-ray site</span>
+            </a>
+          </dd>
+        </div>
         
-        <!--
-        <p class="nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0">You must be registered with a Leeds GP to use this service. By confirming these details you agree to share them with the service.</p>
-        -->
-        
-      </div>
-        </form> 
+      </dl>
+      
+    </fieldset>
+
+     <!-- Conditional callout for interpreter or extra help -->
+    {% if data.interpreter == 'yes' or data['extra-help'] == 'yes' %}
+    <div class="app-callout app-callout--info">
+      <p>Contact the X-ray site before you go to let them know you need 
+        {% if data.interpreter == 'yes' and data['extra-help'] == 'yes' %}
+          extra help and an interpreter
+        {% elif data.interpreter == 'yes' %}
+          an interpreter
+        {% elif data['extra-help'] == 'yes' %}
+          extra help
+        {% endif %}
+        when you get there.</p>
+    </div>
+    {% endif %}
+    
+    {{ button({
+      text: "Confirm my request"
+    }) }}
+    
+  </div>
+</form>
 
     
 
