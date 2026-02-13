@@ -202,6 +202,23 @@ router.post('/personal-details/sr07c-interpreter', function(req, res) {
   }
 
   req.session.data['error'] = null
+  
+  if (interpreter === 'yes') {
+    return res.redirect('language-selection')
+  }
+  
+  res.redirect('sr08-check-details')
+})
+
+router.post('/personal-details/language-selection', function(req, res) {
+  let language = req.session.data['language']
+
+  if (!language) {
+    req.session.data['error'] = 'language'
+    return res.redirect('language-selection')
+  }
+
+  req.session.data['error'] = null
   res.redirect('sr08-check-details')
 })
 

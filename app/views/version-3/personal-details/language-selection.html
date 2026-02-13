@@ -1,0 +1,444 @@
+<!-- Use this page as the index for your project -->
+
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /app/views/layout.html -->
+{% extends 'layout.html' %}
+<!--
+  In /app/views/layout.html you can:
+    - change the header and footer
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+  {{ serviceName }}
+{% endblock %}
+
+<!-- For adding a breadcrumb or back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+ 
+  <div class="nhsuk-u-reading-width">
+    <form method="post" novalidate>
+      <fieldset class="nhsuk-fieldset">
+        <h1 class="nhsuk-heading-l">What language do you need an interpreter for?</h1>
+        <div class="nhsuk-hint">For example Polish, Bengali or British Sign Language.</div>
+
+        <div class="nhsuk-typeahead-wrap">
+          <input class="nhsuk-input" id="language" name="language" type="text" />
+          <ul id="language-listbox" role="listbox" class="nhsuk-typeahead-listbox nhsuk-typeahead-hidden"></ul>
+            <input type="hidden" id="language_code" name="language_code" />
+      <input type="hidden" id="language_raw" name="language_raw" />
+        </div>
+
+      </fieldset>
+
+      
+
+      <button class="nhsuk-button" type="submit">Next</button>
+    
+    </form>
+  </div>
+
+
+
+<div class="app-section-break nhsuk-u-margin-bottom-5"></div>
+<details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary><div class="nhsuk-details__text">
+  <form data-test-id="feedback-content" action="/Feedback/SubmitFeedback/" method="post" target="_blank" data-feedback-form="" autocomplete="off">
+
+     
+      <div class="nhsuk-form-group" data-feedback-form-section="">
+          <fieldset class="nhsuk-fieldset">
+              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m nhsuk-u-visually-hidden">Does the page make sense?</legend>
+              <div class="nhsuk-radios">
+                  <div class="nhsuk-radios__item">
+                      <input class="nhsuk-radios__input" data-test-id="feedback-choice-yes" id="feedback-choice-yes" name="FeedbackChoice" type="radio" value="Yes">
+                      <label class="nhsuk-label nhsuk-radios__label" for="feedback-choice-yes">Yes</label>
+                  </div>
+
+                  <div class="nhsuk-radios__item">
+                      <input class="nhsuk-radios__input" data-test-id="feedback-choice-no" id="feedback-choice-no" name="FeedbackChoice" type="radio" value="No">
+                      <label class="nhsuk-label nhsuk-radios__label" for="feedback-choice-no">No</label>
+                  </div>
+              </div>
+          </fieldset>
+
+          <div class="app-callout app-callout--info nhsuk-u-margin-top-3 nhsuk-u-margin-bottom-0" data-test-id="u13-consent">
+              <p>If you're under 13, you should have permission from your parent or guardian before leaving feedback.</p>
+          </div>
+      <button class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-top-4" data-test-id="feedback-tell-us-button">Tell us</button></div>
+
+
+      <div data-feedback-form-section="" hidden="">
+           
+
+
+
+<fieldset class="nhsuk-fieldset">
+<legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m nhsuk-u-margin-bottom-0" data-test-id="feedback-explanation-1">Tell us how to make this page easier to understand</legend>                                                    
+<br>
+<div class="nhsuk-character-count nhsuk-u-margin-bottom-0" data-module="nhsuk-character-count" data-maxlength="1200" data-threshold="75">
+<div class="nhsuk-form-group">
+
+  <div class="app-callout app-callout--info" id="feedback-contact-warning">
+      <p data-test-id="feedback-explanation-no-pid">Do <strong>not</strong> leave any personal or contact information. No one will reply to requests for medical help or contact you.</p>
+  </div>
+
+  <label for="feedback-text" class="nhsuk-label">Your feedback</label>                            
+  <textarea class="nhsuk-textarea nhsuk-js-character-count" id="feedback-text" name="Text" rows="5" data-test-id="feedback-textarea" aria-describedby="feedback-contact-warning feedback-text-info" data-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; text-align: start; height: 151.8px;" data-original-aria-describedby="feedback-contact-warning feedback-text-info"></textarea><div class="nhsuk-hint nhsuk-character-count__message nhsuk-u-visually-hidden" id="feedback-text-info">You can enter up to 1200 characters</div><div class="nhsuk-hint nhsuk-character-count__message nhsuk-character-count__status nhsuk-character-count__message--disabled" aria-hidden="true">You have 1200 characters remaining</div><div class="nhsuk-character-count__sr-status nhsuk-u-visually-hidden" aria-live="polite" aria-hidden="true">You have 1200 characters remaining</div>
+</div>
+
+
+</div>
+</fieldset>
+
+<script type="application/json" data-feedback-form-section-validation-rules="">
+[
+{
+  "id": "feedback-text",
+  "name": "Text",
+  "rule": "required",
+  "message": "Enter your feedback"
+},
+{
+  "id": "feedback-text",
+  "name": "Text",
+  "rule": "maxlength",
+  "maxlength": 1200,
+  "message": "Feedback should be fewer than 1200 characters long"
+},
+{
+  "id": "feedback-text",
+  "name": "Text",
+  "rule": "excludedcontent",
+  "message": "Your feedback cannot be sent. It includes contact details, spam, website links or offensive words"
+}
+]
+</script>
+
+
+
+
+
+          <div class="nhsuk-back-link"><button class="nhsuk-back-link__link" href="#">
+<svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+<path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+</svg>
+Go back</button></div><button data-test-id="send-feedback-button" data-event-trigger="click" data-event-value="Send feedback" class="nhsuk-button nhsuk-button--secondary nhsuk-u-margin-bottom-2" type="submit">Send feedback</button>
+          
+      </div>
+          
+  </form>
+
+
+</div></details>
+  </div>
+
+  <script>
+
+const LANGUAGE_DATA = [
+  // Spoken (Top global/common languages)
+  { code: 'en', name: 'English', type: 'spoken', aliases: ['Eng'] },
+  { code: 'zh', name: 'Chinese', type: 'spoken', aliases: ['Mandarin', '中文'] },
+  { code: 'es', name: 'Spanish', type: 'spoken', aliases: ['Español'] },
+  { code: 'fr', name: 'French', type: 'spoken', aliases: ['Français'] },
+  { code: 'ar', name: 'Arabic', type: 'spoken', aliases: ['العربية'] },
+  { code: 'hi', name: 'Hindi', type: 'spoken', aliases: ['हिन्दी'] },
+  { code: 'bn', name: 'Bengali', type: 'spoken', aliases: ['Bangla', 'বাংলা'] },
+  { code: 'pt', name: 'Portuguese', type: 'spoken', aliases: ['Português'] },
+  { code: 'ru', name: 'Russian', type: 'spoken', aliases: ['Русский'] },
+  { code: 'ur', name: 'Urdu', type: 'spoken', aliases: ['اردو'] },
+  { code: 'id', name: 'Indonesian', type: 'spoken', aliases: ['Bahasa Indonesia'] },
+  { code: 'de', name: 'German', type: 'spoken', aliases: ['Deutsch'] },
+  { code: 'ja', name: 'Japanese', type: 'spoken', aliases: ['日本語'] },
+  { code: 'sw', name: 'Swahili', type: 'spoken', aliases: ['Kiswahili'] },
+  { code: 'tr', name: 'Turkish', type: 'spoken', aliases: ['Türkçe'] },
+  { code: 'vi', name: 'Vietnamese', type: 'spoken', aliases: ['Tiếng Việt'] },
+  { code: 'it', name: 'Italian', type: 'spoken', aliases: ['Italiano'] },
+  { code: 'fa', name: 'Persian', type: 'spoken', aliases: ['Farsi', 'فارسی'] },
+  { code: 'th', name: 'Thai', type: 'spoken', aliases: ['ไทย'] },
+  { code: 'ko', name: 'Korean', type: 'spoken', aliases: ['한국어'] },
+  { code: 'pl', name: 'Polish', type: 'spoken', aliases: ['Polski'] },
+  { code: 'uk', name: 'Ukrainian', type: 'spoken', aliases: ['Українська'] },
+  { code: 'nl', name: 'Dutch', type: 'spoken', aliases: ['Nederlands'] },
+  { code: 'ro', name: 'Romanian', type: 'spoken', aliases: ['Română'] },
+  { code: 'el', name: 'Greek', type: 'spoken', aliases: ['Ελληνικά'] },
+  { code: 'hu', name: 'Hungarian', type: 'spoken', aliases: ['Magyar'] },
+  { code: 'cs', name: 'Czech', type: 'spoken', aliases: ['Čeština'] },
+  { code: 'sv', name: 'Swedish', type: 'spoken', aliases: ['Svenska'] },
+  { code: 'fi', name: 'Finnish', type: 'spoken', aliases: ['Suomi'] },
+  { code: 'da', name: 'Danish', type: 'spoken', aliases: ['Dansk'] },
+  { code: 'nb', name: 'Norwegian Bokmål', type: 'spoken', aliases: ['Norsk Bokmål'] },
+  { code: 'hr', name: 'Croatian', type: 'spoken', aliases: ['Hrvatski'] },
+  { code: 'sr', name: 'Serbian', type: 'spoken', aliases: ['Српски'] },
+  { code: 'bg', name: 'Bulgarian', type: 'spoken', aliases: ['Български'] },
+  { code: 'sk', name: 'Slovak', type: 'spoken', aliases: ['Slovenčina'] },
+  { code: 'sl', name: 'Slovenian', type: 'spoken', aliases: ['Slovenščina'] },
+  { code: 'lt', name: 'Lithuanian', type: 'spoken', aliases: ['Lietuvių'] },
+  { code: 'lv', name: 'Latvian', type: 'spoken', aliases: ['Latviešu'] },
+  { code: 'et', name: 'Estonian', type: 'spoken', aliases: ['Eesti'] },
+  { code: 'tl', name: 'Tagalog', type: 'spoken', aliases: ['Filipino'] },
+  { code: 'ms', name: 'Malay', type: 'spoken', aliases: ['Bahasa Melayu'] },
+  { code: 'ta', name: 'Tamil', type: 'spoken', aliases: ['தமிழ்'] },
+  { code: 'te', name: 'Telugu', type: 'spoken', aliases: ['తెలుగు'] },
+  { code: 'kn', name: 'Kannada', type: 'spoken', aliases: ['ಕನ್ನಡ'] },
+  { code: 'mr', name: 'Marathi', type: 'spoken', aliases: ['मराठी'] },
+  { code: 'gu', name: 'Gujarati', type: 'spoken', aliases: ['ગુજરાતી'] },
+  { code: 'ml', name: 'Malayalam', type: 'spoken', aliases: ['മലയാളം'] },
+  { code: 'ne', name: 'Nepali', type: 'spoken', aliases: ['नेपाली'] },
+  { code: 'si', name: 'Sinhala', type: 'spoken', aliases: ['සිංහල'] },
+  { code: 'ps', name: 'Pashto', type: 'spoken', aliases: ['پښتو'] },
+  { code: 'ckb', name: 'Central Kurdish (Sorani)', type: 'spoken', aliases: ['کوردی سۆرانی'] },
+  { code: 'az', name: 'Azerbaijani', type: 'spoken', aliases: ['Азәрбајҹан', 'Azərbaycan dili'] },
+  { code: 'hy', name: 'Armenian', type: 'spoken', aliases: ['Հայերեն'] },
+  { code: 'ka', name: 'Georgian', type: 'spoken', aliases: ['ქართული'] },
+  { code: 'he', name: 'Hebrew', type: 'spoken', aliases: ['עברית'] },
+  { code: 'am', name: 'Amharic', type: 'spoken', aliases: ['አማርኛ'] },
+  { code: 'om', name: 'Oromo', type: 'spoken', aliases: ['Afaan Oromoo'] },
+  { code: 'ti', name: 'Tigrinya', type: 'spoken', aliases: ['ትግርኛ'] },
+  { code: 'so', name: 'Somali', type: 'spoken', aliases: ['Af-Soomaali'] },
+  { code: 'ha', name: 'Hausa', type: 'spoken', aliases: ['Hausa'] },
+  { code: 'yo', name: 'Yoruba', type: 'spoken', aliases: ['Yorùbá'] },
+  { code: 'ig', name: 'Igbo', type: 'spoken', aliases: ['Igbo'] },
+  { code: 'zu', name: 'Zulu', type: 'spoken', aliases: ['isiZulu'] },
+  { code: 'xh', name: 'Xhosa', type: 'spoken', aliases: ['isiXhosa'] },
+  { code: 'af', name: 'Afrikaans', type: 'spoken', aliases: ['Afrikaans'] },
+  { code: 'sq', name: 'Albanian', type: 'spoken', aliases: ['Shqip'] },
+  { code: 'bs', name: 'Bosnian', type: 'spoken', aliases: ['Bosanski'] },
+  { code: 'mk', name: 'Macedonian', type: 'spoken', aliases: ['Македонски'] },
+  { code: 'be', name: 'Belarusian', type: 'spoken', aliases: ['Беларуская'] },
+  { code: 'ca', name: 'Catalan', type: 'spoken', aliases: ['Català'] },
+  { code: 'gl', name: 'Galician', type: 'spoken', aliases: ['Galego'] },
+  { code: 'eu', name: 'Basque', type: 'spoken', aliases: ['Euskara'] },
+  { code: 'ga', name: 'Irish', type: 'spoken', aliases: ['Gaeilge'] },
+  { code: 'gd', name: 'Scottish Gaelic', type: 'spoken', aliases: ['Gàidhlig'] },
+  { code: 'cy', name: 'Welsh', type: 'spoken', aliases: ['Cymraeg'] },
+  { code: 'mt', name: 'Maltese', type: 'spoken', aliases: ['Malti'] },
+  { code: 'is', name: 'Icelandic', type: 'spoken', aliases: ['Íslenska'] },
+  { code: 'lb', name: 'Luxembourgish', type: 'spoken', aliases: ['Lëtzebuergesch'] },
+  { code: 'km', name: 'Khmer', type: 'spoken', aliases: ['ភាសាខ្មែរ'] },
+  { code: 'lo', name: 'Lao', type: 'spoken', aliases: ['ລາວ'] },
+  { code: 'my', name: 'Burmese', type: 'spoken', aliases: ['မြန်မာ'] },
+  { code: 'mn', name: 'Mongolian', type: 'spoken', aliases: ['Монгол'] },
+  { code: 'uz', name: 'Uzbek', type: 'spoken', aliases: ['Oʻzbek'] },
+  { code: 'kk', name: 'Kazakh', type: 'spoken', aliases: ['Қазақ'] },
+  { code: 'tg', name: 'Tajik', type: 'spoken', aliases: ['Тоҷикӣ'] },
+  { code: 'tk', name: 'Turkmen', type: 'spoken', aliases: ['Türkmen'] },
+  { code: 'ky', name: 'Kyrgyz', type: 'spoken', aliases: ['Кыргызча'] },
+  { code: 'ug', name: 'Uyghur', type: 'spoken', aliases: ['ئۇيغۇرچە'] },
+  { code: 'ht', name: 'Haitian Creole', type: 'spoken', aliases: ['Kreyòl ayisyen'] },
+  { code: 'pcm', name: 'Nigerian Pidgin', type: 'spoken', aliases: ['Pidgin', 'Naija'] },
+  { code: 'ln', name: 'Lingala', type: 'spoken', aliases: ['Lingála'] },
+  { code: 'rw', name: 'Kinyarwanda', type: 'spoken', aliases: ['Ikinyarwanda'] },
+  { code: 'rn', name: 'Kirundi', type: 'spoken', aliases: ['Ikirundi'] },
+  { code: 'sn', name: 'Shona', type: 'spoken', aliases: ['ChiShona'] },
+  { code: 'tn', name: 'Tswana', type: 'spoken', aliases: ['Setswana'] },
+  { code: 'st', name: 'Sesotho', type: 'spoken', aliases: ['Sotho', 'Southern Sotho'] },
+  { code: 'ny', name: 'Chewa (Chichewa)', type: 'spoken', aliases: ['Chichewa', 'Nyanja'] },
+
+  // Signed (major/widely referenced sign languages)
+  { code: 'bfi', name: 'British Sign Language', type: 'signed', aliases: ['BSL', 'British SL'] },
+  { code: 'ase', name: 'American Sign Language', type: 'signed', aliases: ['ASL', 'American SL'] },
+  { code: 'bzs', name: 'Brazilian Sign Language', type: 'signed', aliases: ['Libras', 'Brazilian SL'] },
+  { code: 'lsf', name: 'French Sign Language', type: 'signed', aliases: ['LSF', 'French SL'] },
+  { code: 'ssp', name: 'Spanish Sign Language', type: 'signed', aliases: ['LSE', 'Spanish SL'] },
+  { code: 'gsg', name: 'German Sign Language', type: 'signed', aliases: ['DGS', 'German SL'] },
+  { code: 'csl', name: 'Chinese Sign Language', type: 'signed', aliases: ['CSL', 'Chinese SL'] },
+  { code: 'rsl', name: 'Russian Sign Language', type: 'signed', aliases: ['РЖЯ', 'Russian SL'] },
+  { code: 'nzs', name: 'New Zealand Sign Language', type: 'signed', aliases: ['NZSL'] },
+  { code: 'asf', name: 'Auslan (Australian Sign Language)', type: 'signed', aliases: ['Auslan'] },
+  { code: 'jsl', name: 'Japanese Sign Language', type: 'signed', aliases: ['JSL'] },
+  { code: 'psr', name: 'Portuguese Sign Language', type: 'signed', aliases: ['LGP', 'Portuguese SL'] },
+  { code: 'pso', name: 'Polish Sign Language', type: 'signed', aliases: ['PJM', 'Polish SL'] },
+  { code: 'isg', name: 'Irish Sign Language', type: 'signed', aliases: ['ISL', 'Irish SL'] },
+  { code: 'pks', name: 'Pakistani Sign Language', type: 'signed', aliases: ['PKSL', 'Pakistani SL'] },
+  { code: 'tsm', name: 'Turkish Sign Language', type: 'signed', aliases: ['TİD', 'Turkish SL'] },
+  { code: 'ise', name: 'Italian Sign Language', type: 'signed', aliases: ['LIS', 'Italian SL'] },
+  { code: 'dse', name: 'Dutch Sign Language', type: 'signed', aliases: ['NGT', 'Dutch SL'] },
+  { code: 'ins', name: 'Indian Sign Language', type: 'signed', aliases: ['ISL', 'Indian SL'] },
+  { code: 'ils', name: 'International Sign', type: 'signed', aliases: ['IS'] }
+];
+
+
+const input = document.getElementById('language');
+const list = document.getElementById('language-listbox');
+const status = document.getElementById('language-status');
+const hiddenCode = document.getElementById('language_code');
+const hiddenRaw = document.getElementById('language_raw');
+
+input.setAttribute('role', 'combobox');
+input.setAttribute('aria-autocomplete', 'list');
+input.setAttribute('aria-expanded', 'false');
+input.setAttribute('aria-controls', 'language-listbox');
+
+let results = [], activeIndex = -1, lastQuery = '';
+
+function fold(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function damerauLevenshtein(a, b) {
+  const al = a.length, bl = b.length, INF = al + bl, da = {};
+  const d = Array.from({ length: al + 2 }, () => new Array(bl + 2).fill(0));
+  d[0][0] = INF;
+  for (let i = 0; i <= al; i++) { d[i+1][1] = i; d[i+1][0] = INF; }
+  for (let j = 0; j <= bl; j++) { d[1][j+1] = j; d[0][j+1] = INF; }
+  for (let i = 1; i <= al; i++) {
+    let db = 0;
+    for (let j = 1; j <= bl; j++) {
+      const i1 = da[b[j-1]] || 0;
+      const j1 = db;
+      const cost = (a[i-1] === b[j-1]) ? 0 : 1;
+      if (cost === 0) db = j;
+      d[i+1][j+1] = Math.min(
+        d[i][j] + cost,
+        d[i+1][j] + 1,
+        d[i][j+1] + 1,
+        d[i1][j1] + (i - i1 - 1) + 1 + (j - j1 - 1)
+      );
+    }
+    da[a[i-1]] = i;
+  }
+  return d[al+1][bl+1];
+}
+
+function score(query, lang) {
+  const q = fold(query).trim();
+  const candidates = [lang.name, ...lang.aliases].map(fold);
+  if (!q) return { best: Infinity, kind: 'empty' };
+  let best = Infinity, kind = 'none', starts = false, contains = false;
+  for (const c of candidates) {
+    if (c.startsWith(q)) starts = true;
+    if (c.includes(q)) contains = true;
+    const dist = damerauLevenshtein(q, c);
+    if (dist < best) best = dist;
+  }
+  if (starts) { kind = 'prefix'; best -= 2; }
+  else if (contains) { kind = 'substring'; best -= 1; }
+  else { kind = 'distance'; }
+  return { best, kind };
+}
+
+function render(query) {
+  list.innerHTML = '';
+  const q = query.trim();
+  if (!q) { list.classList.add('nhsuk-typeahead-hidden'); return; }
+
+  const scored = LANGUAGE_DATA.map(lang => ({ lang, s: score(q, lang) }))
+    .filter(x => {
+      const len = fold(q).length;
+      const maxDist = len <= 3 ? 1 : len <= 6 ? 2 : 3;
+      return (x.s.kind === 'prefix' || x.s.kind === 'substring' || x.s.best <= maxDist);
+    })
+    .sort((a, b) => {
+      const order = { prefix: 0, substring: 1, distance: 2, empty: 3, none: 4 };
+      if (order[a.s.kind] !== order[b.s.kind]) return order[a.s.kind] - order[b.s.kind];
+      if (a.s.best !== b.s.best) return a.s.best - b.s.best;
+      return a.lang.name.localeCompare(b.lang.name);
+    });
+
+  results = scored.slice(0, 10).map(x => x.lang);
+
+  results.forEach((lang, i) => {
+    const li = document.createElement('li');
+    li.id = 'opt-' + i;
+    li.role = 'option';
+    li.className = 'nhsuk-typeahead-option';
+    li.textContent = `${lang.name} (${lang.code})`;
+    li.onclick = () => choose(lang, q);
+    list.appendChild(li);
+  });
+
+  if (results.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = `Other: ${q}`;
+    li.className = 'nhsuk-typeahead-option';
+    li.onclick = () => chooseOther(q);
+    list.appendChild(li);
+  }
+
+  list.classList.remove('nhsuk-typeahead-hidden');
+  input.setAttribute('aria-expanded', 'true');
+  status.textContent = `${results.length} suggestions`;
+}
+
+function choose(lang, raw) {
+  input.value = lang.name;
+  hiddenCode.value = lang.code;
+  hiddenRaw.value = raw;
+  list.classList.add('nhsuk-typeahead-hidden');
+}
+
+function chooseOther(raw) {
+  input.value = `Other: ${raw}`;
+  hiddenCode.value = 'other';
+  hiddenRaw.value = raw;
+  list.classList.add('nhsuk-typeahead-hidden');
+}
+
+// Input handling
+let t;
+input.addEventListener('input', e => {
+  clearTimeout(t);
+  lastQuery = e.target.value;
+  t = setTimeout(() => render(lastQuery), 120);
+});
+
+// Keyboard navigation
+input.addEventListener('keydown', e => {
+  const opts = [...list.querySelectorAll('[role="option"]')];
+  const isOpen = !list.classList.contains('nhsuk-typeahead-hidden');
+
+  switch (e.key) {
+    case 'ArrowDown':
+      e.preventDefault();
+      if (!isOpen) render(input.value);
+      activeIndex = Math.min(activeIndex + 1, opts.length - 1);
+      setActive(opts);
+      break;
+    case 'ArrowUp':
+      e.preventDefault();
+      activeIndex = Math.max(activeIndex - 1, -1);
+      setActive(opts);
+      break;
+    case 'Enter':
+      if (isOpen) {
+        e.preventDefault();
+        if (activeIndex >= 0 && activeIndex < results.length) choose(results[activeIndex], input.value);
+        else chooseOther(input.value);
+      }
+      break;
+    case 'Escape':
+      if (isOpen) { e.preventDefault(); list.classList.add('nhsuk-typeahead-hidden'); }
+      break;
+  }
+});
+
+function setActive(opts) {
+  opts.forEach(o => o.setAttribute('aria-selected', 'false'));
+  if (activeIndex >= 0 && activeIndex < opts.length) {
+    opts[activeIndex].setAttribute('aria-selected', 'true');
+    input.setAttribute('aria-activedescendant', opts[activeIndex].id);
+  } else {
+    input.removeAttribute('aria-activedescendant');
+  }
+}
+
+// Close on outside click
+document.addEventListener('click', e => {
+  if (!list.contains(e.target) && e.target !== input) {
+    list.classList.add('nhsuk-typeahead-hidden');
+  }
+});
+
+  </script>
+
+{% endblock %}
+
+
