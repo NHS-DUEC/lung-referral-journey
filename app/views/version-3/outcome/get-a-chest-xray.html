@@ -1,71 +1,106 @@
 {% set page = {
-  title: 'Your email address'
+  title: 'Get a chest x-ray'
 } %}
 
 {% extends page.layout.file | d(layouts.base) %}
 
+
+
 {% block content_primary %}
 
-    <form action="sr05-email" method="post" class="form">
+  <div class="nhsuk-width-container">
 
-      <!-- Error summary -->
-      {% if data.error %}
-      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
-        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
-          There is a problem
-        </h2>
-        <div class="nhsuk-error-summary__body">
-          <ul class="nhsuk-list nhsuk-error-summary__list">
-            <li><a href="#EmailAddress">Enter a valid email address</a></li>
-          </ul>
-        </div>
-      </div>
-      {% endif %}
+    <div class="nhsuk-u-reading-width">
 
-      <fieldset class="nhsuk-fieldset">
+      <h1 class="nhsuk-heading-xl" data-test-id="outcome-heading">You need a chest X-ray in the next few days</h1>
 
-        <div class="nhsuk-form-group nhsuk-u-margin-bottom-5">
-          <h1 class="nhsuk-label-wrapper"><label class="nhsuk-label nhsuk-label--l nhsuk-u-margin-bottom-5" data-test-id="heading-text" for="EmailAddress">
-             What is your email address?
-             </label>
-          </h1>
-        </div>
+      <p>Sometimes having a cough or other symptoms for more than 3 weeks can be a sign of lung cancer.</p>
+      <p>A chest X-ray will help doctors decide what other tests and investigations you might need.</p>
+      <p>The whole process should not take more than half an hour.</p>
+      <p>You do not need to contact your GP until the results of the X-ray are back.</p>
 
-        <div class="app-callout app-callout--info">
-          <p data-test-id="gender-callout-info-1">You can give us an email address if you want to.</p>
-        </div>
-        
-        <div class="nhsuk-form-group {% if data.error %}nhsuk-form-group--error{% endif %}">
-          <label class="nhsuk-label" for="EmailAddress">Email address</label>
-          {% if data.error %}
-          <span class="nhsuk-error-message" id="email-error">
-            <span class="nhsuk-u-visually-hidden">Error:</span> Enter a valid email address
+      <div class="nhsuk-warning-callout">
+        <h3 class="nhsuk-warning-callout__label">
+          <span role="text">
+            <span class="nhsuk-u-visually-hidden">Important: </span>
+            Important
           </span>
-          {% endif %}
-          <input data-test-id="email-input" inputmode="email" value="{{ data.EmailAddress }}" class="nhsuk-input nhsuk-input--width-20 {% if data.error %}nhsuk-input--error{% endif %}" type="email" id="EmailAddress" name="EmailAddress" aria-describedby="email-hint">
-        </div>
+        </h3>
+        <p>It's important to remember that only 1 in 100 people are diagnosed with lung cancer following a chest X-ray.</p>
+      </div>
 
-        <br>
-        
-        <p><a href="sr06-home-postcode" class="nhsuk-link">Skip this question</a></p>
+    </div>
 
-        <br>
+    <br>
 
-        {{ button({
-          text: "Next"
-        }) }}
+    <fieldset class="nhsuk-fieldset nhsuk-u-margin-bottom-4">
+      <h2>Choose a hospital</h2>
+      <p>We found 2 local chest x-ray sites available near {{ data['home-postcode'] | default('LS9 8QS') }}.</p>
 
-      </fieldset>
+      <form method="post" action="../personal-details/sr00-about-you">
 
-      <br>
-    
-    </form>
+        <button type="submit" name="selected-xray-site" value="st-james" class="pharmacy-card-i">
+          <div class="pharmacy-details-i">
+            <h2 class="nhsuk-card__heading nhsuk-heading-s">
+              Chest X-ray department - St James's University Hospital
+            </h2>
+            <p>
+              Beckett St, Harehills<br>
+              Leeds<br>
+              LS9 7TF
+            </p>
+            <p>2.4 miles away</p>
+            <p style="margin-bottom:0px;">Open today: 9:00am to 4:00pm</p>
+          </div>
+          <div class="select-panel-i">
+            <div class="">
+              <p>Choose this X-ray site</p>
+            </div>
+            <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="34" width="34" fill="#4c6272">
+              <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
+            </svg>
+          </div>
+        </button>
 
+        <button type="submit" name="selected-xray-site" value="seacroft" class="pharmacy-card-i">
+          <div class="pharmacy-details-i">
+            <h2 class="nhsuk-card__heading nhsuk-heading-s">
+              Chest X-ray department - Seacroft Hospital
+            </h2>
+            <p>
+              York Rd<br>
+              Seacroft<br>
+              Leeds<br>
+              LS14 6UH
+            </p>
+            <p>3.1 miles away</p>
+            <p style="margin-bottom:0px;">Open today: 8:15am to 5:45pm</p>
+          </div>
+          <div class="select-panel-i">
+            <div>
+              <p>Choose this X-ray site</p>
+            </div>
+            <svg class="nhsuk-icon nhsuk-icon__chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="34" width="34" fill="#4c6272">
+              <path d="M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z"></path>
+            </svg>
+          </div>
+        </button>
 
-      
-      <hr class="app-section-break">
+      </form>
 
-      <!-- Does this page make sense section -->
+    </fieldset>
+
+    <br>
+    <a href="https://111-int1412-ep-efhydhd5ahcwh2ad.a03.azurefd.net/Location/TriageStart">Change my location</a>
+    <br>
+
+  </div>
+
+  <br>
+
+<hr class="app-section-break">
+
+  <!-- Does this page make sense section -->
       <section>
         <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal"><span class="nhsuk-details__summary-text">Does this page make sense?</span></summary>
           <div class="nhsuk-details__text">
@@ -123,8 +158,25 @@
           </div>
         </details>
       </section>
-   
-
-  
 
 {% endblock %}
+```
+
+---
+
+**Key features:**
+
+| Element | Description |
+|---------|-------------|
+| **H1** | "You need a chest X-ray in the next few days" |
+| **Info paragraphs** | Explains why X-ray is needed |
+| **Warning callout** | "Only 1 in 100 people are diagnosed..." |
+| **Hospital cards** | Clickable cards with address, distance, opening hours |
+| **Choose link** | Takes user to personal details (sr02-name) |
+| **Change location** | Link to change postcode |
+
+---
+
+**To view it:**
+```
+http://localhost:3000/version-3/outcome/get-a-chest-xray
