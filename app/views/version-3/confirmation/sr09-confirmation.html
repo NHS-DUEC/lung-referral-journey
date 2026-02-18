@@ -10,7 +10,7 @@
 
 <form method="post" action="sr09-receipt">
             <h1 class="nhsuk-heading-xl" data-test-id="outcome-heading">Your request for a chest X-ray has been sent</h1>
-              <p>We have sent your request to {{ data.TelephoneNumber }}. You should go to the hospital during opening hours, as soon as you can in the next few days.</p>
+              <p>We have sent your request to St James's Hospital. You should go to the hospital during opening hours, as soon as you can in the next few days.</p>
               <p>You do not need an appointment - just walk in and ask for the "self-request chest X-ray service".</p>
                   
               <div class="app-service-details">
@@ -26,8 +26,8 @@
                                 Leeds<br>
                                 LS9 7TF<br>
 
-                          <p data-test-id="opening-time-text">Open today: XX hours</p>
-                          <p data-test-id="miles-away-text">12.7 miles away</p>
+                          <p data-test-id="opening-time-text">Open today: 9:00am to 4:00pm</p>
+                          <p data-test-id="miles-away-text">2.3 miles away</p>
 
                          
                            <p><a href="" data-event-trigger="click" data-event-value="Get directions">Hide map <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a></p>
@@ -86,27 +86,44 @@
               <p>You must contact them to find out what happens next.</p>
 
                 <br>
-                  
-                    {{ button({
-                      text: "Send me a copy of this page"
-                    }) }}
-                    
+
+            <hr class="app-section-break">
+            <h3>Looking after yourself while you wait for the X-ray results</h3>
+            <details data-test-id="care-advice" class="nhsuk-details ">
+                <summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="care advice"><span class="nhsuk-details__summary-text">Things to look out for and self-care</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <h2 id="Advice_CX220975-Adult-Male" class="nhsuk-heading-s">Cough</h2>
+                         <ul>
+                            <li>
+                                <p>Drinking lemon juice and honey mixed into warm water can be soothing.</p>
+                             <ul>
+                                 </ul>
+                            </li>
+                            <li>
+                                <p>Speak to a pharmacist for advice on suitable treatments.</p>
+                                 <ul>
+                                </ul>
+                            </li>
+                    </ul>
+                </div>
+            </details>
+           
+            <details data-test-id="worsening-advice" class="nhsuk-details ">
+                <summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="worsening advice"><span class="nhsuk-details__summary-text">What to do if you feel worse</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Use <a href="https://111-int1412-ep-efhydhd5ahcwh2ad.a03.azurefd.net/triage/check-your-symptoms" data-event-trigger="click" data-event-value="Use 111 online again" target="_blank">111 online</a> again or call 111 if:</p>
+                              <ul>
+                                <li>your symptoms get worse</li>
+                                <li>you have any new symptoms</li>
+                             </ul>
+                      <p>If you are deaf or hard of hearing there are <a data-event-trigger="click" data-event-value="Other ways to contact 111" href="https://111-int1412-ep-efhydhd5ahcwh2ad.a03.azurefd.net/Help/OtherWays" id="language-link" target="_blank">other ways you can contact 111</a>.</p>
+                </div>
+            </details>
+
              </form>
-              <!--
-              <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4"><summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="I am unable to book a call"><span class="nhsuk-details__summary-text">I am unable to book a call</span></summary><div class="nhsuk-details__text">
-                  <p>
-                  Local NHS callback services are currently only available on the phone.
-                  There are <a href="/Help/OtherWays" target="_blank" data-event-trigger="click" data-event-value="Other ways to contact 111">other ways to contact 111<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a>, but unfortunately, you'll have to provide all your answers again.
-              </p>
-              </div></details>
-              
-              --> 
-
-        
-
-
-  
-    
+            
 
       <hr class="app-section-break">
 

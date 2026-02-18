@@ -1,0 +1,142 @@
+{% set page = {
+  title: 'How should we send your request confirmation?'
+} %}
+
+{% extends page.layout.file | d(layouts.base) %}
+
+{% block content_primary %}
+
+    <form action="sr07e-confirmation-method" method="post" class="form">
+
+      <!-- Error summary -->
+      {% if data.error == 'confirmation-method' or data.error == 'mobile-missing' or data.error == 'mobile-invalid' or data.error == 'email-missing' or data.error == 'email-invalid' %}
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          <ul class="nhsuk-list nhsuk-error-summary__list">
+            {% if data.error == 'confirmation-method' %}
+            <li><a href="#confirmation-text">Select at least one option</a></li>
+            {% endif %}
+            {% if data.error == 'mobile-missing' %}
+            <li><a href="#confirmation-mobile">Enter a mobile number</a></li>
+            {% endif %}
+            {% if data.error == 'mobile-invalid' %}
+            <li><a href="#confirmation-mobile">Enter a valid UK mobile number</a></li>
+            {% endif %}
+            {% if data.error == 'email-missing' %}
+            <li><a href="#confirmation-email">Enter an email address</a></li>
+            {% endif %}
+            {% if data.error == 'email-invalid' %}
+            <li><a href="#confirmation-email">Enter a valid email address</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="nhsuk-form-group {% if data.error == 'confirmation-method' %}nhsuk-form-group--error{% endif %}">
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+              How should we send your request confirmation?
+            </h1>
+          </legend>
+
+          <div class="nhsuk-hint nhsuk-u-margin-bottom-4">
+            You can pick more than one.
+          </div>
+
+          {% if data.error == 'confirmation-method' %}
+          <span class="nhsuk-error-message" id="confirmation-method-error">
+            <span class="nhsuk-u-visually-hidden">Error:</span> Select at least one option
+          </span>
+          {% endif %}
+
+          <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
+            
+            <!-- Text message checkbox -->
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="confirmation-text" name="confirmation-text" type="checkbox" value="yes" {{ "checked" if data['confirmation-text'] == "yes" }} aria-controls="conditional-confirmation-text" aria-expanded="false">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="confirmation-text">
+                Text message
+              </label>
+            </div>
+
+            <!-- Conditional: Mobile number input -->
+            <div class="nhsuk-checkboxes__conditional nhsuk-checkboxes__conditional--hidden" id="conditional-confirmation-text">
+              <div class="nhsuk-form-group {% if data.error == 'mobile-missing' or data.error == 'mobile-invalid' %}nhsuk-form-group--error{% endif %}">
+                <label class="nhsuk-label" for="confirmation-mobile">
+                  Enter a mobile number
+                </label>
+                {% if data.error == 'mobile-missing' %}
+                <span class="nhsuk-error-message" id="confirmation-mobile-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter a mobile number
+                </span>
+                {% endif %}
+                {% if data.error == 'mobile-invalid' %}
+                <span class="nhsuk-error-message" id="confirmation-mobile-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter a valid UK mobile number
+                </span>
+                {% endif %}
+                <input class="nhsuk-input nhsuk-u-width-two-thirds {% if data.error == 'mobile-missing' or data.error == 'mobile-invalid' %}nhsuk-input--error{% endif %}" id="confirmation-mobile" name="confirmation-mobile" type="tel" value="{{ data['confirmation-mobile'] }}" autocomplete="tel">
+              </div>
+            </div>
+
+            <!-- Email checkbox -->
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="confirmation-email-checkbox" name="confirmation-email-checkbox" type="checkbox" value="yes" {{ "checked" if data['confirmation-email-checkbox'] == "yes" }} aria-controls="conditional-confirmation-email" aria-expanded="false">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="confirmation-email-checkbox">
+                Email
+              </label>
+            </div>
+
+            <!-- Conditional: Email input -->
+            <div class="nhsuk-checkboxes__conditional nhsuk-checkboxes__conditional--hidden" id="conditional-confirmation-email">
+              <div class="nhsuk-form-group {% if data.error == 'email-missing' or data.error == 'email-invalid' %}nhsuk-form-group--error{% endif %}">
+                <label class="nhsuk-label" for="confirmation-email">
+                  Enter an email address
+                </label>
+                {% if data.error == 'email-missing' %}
+                <span class="nhsuk-error-message" id="confirmation-email-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter an email address
+                </span>
+                {% endif %}
+                {% if data.error == 'email-invalid' %}
+                <span class="nhsuk-error-message" id="confirmation-email-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter a valid email address
+                </span>
+                {% endif %}
+                <input class="nhsuk-input nhsuk-u-width-two-thirds {% if data.error == 'email-missing' or data.error == 'email-invalid' %}nhsuk-input--error{% endif %}" id="confirmation-email" name="confirmation-email" type="email" value="{{ data['confirmation-email'] }}" autocomplete="email">
+              </div>
+            </div>
+
+          </div>
+
+        </fieldset>
+      </div>
+
+      <br>
+
+      {{ button({
+        text: "Next"
+      }) }}
+
+    </form>
+
+    <hr class="app-section-break">
+
+    <!-- Does this page make sense section -->
+    <section>
+      <details data-test-id="feedback" class="nhsuk-details nhsuk-u-reading-width">
+        <summary class="nhsuk-details__summary" data-event-trigger="click" data-event-value="Feedback reveal">
+          <span class="nhsuk-details__summary-text">Does this page make sense?</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>Feedback form placeholder</p>
+        </div>
+      </details>
+    </section>
+
+{% endblock %}

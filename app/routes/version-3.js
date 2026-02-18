@@ -24,37 +24,31 @@ router.post('/personal-details/sr03-dob', function(req, res) {
   let month = req.session.data['dob-month']
   let year = req.session.data['dob-year']
 
-  // Check if all fields are filled
   if (!day || !month || !year) {
     res.redirect('sr03-dob?error=missing')
     return
   }
 
-  // Convert to numbers
   let dayNum = parseInt(day, 10)
   let monthNum = parseInt(month, 10)
   let yearNum = parseInt(year, 10)
 
-  // Check if they are valid numbers
   if (isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum)) {
     res.redirect('sr03-dob?error=invalid')
     return
   }
 
-  // Check basic ranges
   if (dayNum < 1 || dayNum > 31 || monthNum < 1 || monthNum > 12) {
     res.redirect('sr03-dob?error=invalid')
     return
   }
 
-  // Check year is reasonable (not in future, not too old)
   let currentYear = new Date().getFullYear()
   if (yearNum > currentYear || yearNum < 1900) {
     res.redirect('sr03-dob?error=invalid')
     return
   }
 
-  // Check if date actually exists (e.g. not 31 Feb)
   let testDate = new Date(yearNum, monthNum - 1, dayNum)
   if (testDate.getFullYear() !== yearNum || 
       testDate.getMonth() !== monthNum - 1 || 
@@ -63,13 +57,11 @@ router.post('/personal-details/sr03-dob', function(req, res) {
     return
   }
 
-  // Check not in future
   if (testDate > new Date()) {
     res.redirect('sr03-dob?error=future')
     return
   }
 
-  // All valid
   req.session.data['error'] = null
   res.redirect('sr04-phone')
 })
@@ -78,20 +70,13 @@ router.post('/personal-details/sr03-dob', function(req, res) {
 router.post('/personal-details/sr04-phone', function(req, res) {
   let phone = req.session.data['TelephoneNumber']
 
-  // Remove spaces, dashes, and brackets
   let cleanedPhone = phone ? phone.replace(/[\s\-\(\)]/g, '') : ''
 
-  // Check if empty
   if (!cleanedPhone) {
     res.redirect('sr04-phone?error=missing')
     return
   }
 
-  // UK phone number patterns:
-  // Mobile: 07xxx xxxxxx (11 digits starting with 07)
-  // Landline: 01xxx xxxxxx or 02x xxxx xxxx (10-11 digits starting with 01 or 02)
-  // Also accept +44 or 0044 prefix
-  
   let ukPhoneRegex = /^(?:(?:\+44|0044)[127]\d{8,9}|0[127]\d{8,9})$/
 
   if (!ukPhoneRegex.test(cleanedPhone)) {
@@ -107,14 +92,12 @@ router.post('/personal-details/sr04-phone', function(req, res) {
 router.post('/personal-details/sr05-email', function(req, res) {
   let email = req.session.data['EmailAddress']
 
-  // If empty, that's fine - it's optional
   if (!email) {
     req.session.data['error'] = null
     res.redirect('sr06-home-postcode')
     return
   }
 
-  // If provided, check it's a valid email format
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
   if (!emailRegex.test(email)) {
@@ -131,20 +114,17 @@ router.post('/personal-details/sr06-home-postcode', function(req, res) {
   let isHomePostcode = req.session.data['is-home-postcode']
   let homePostcode = req.session.data['home-postcode']
 
-  // Check if they selected an option
   if (!isHomePostcode) {
     res.redirect('sr06-home-postcode?error=select')
     return
   }
 
-  // If they selected "No", validate the postcode
   if (isHomePostcode === 'no') {
     if (!homePostcode) {
       res.redirect('sr06-home-postcode?error=postcode-missing')
       return
     }
 
-    // UK postcode regex
     let postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i
 
     if (!postcodeRegex.test(homePostcode.trim())) {
@@ -159,10 +139,7 @@ router.post('/personal-details/sr06-home-postcode', function(req, res) {
 
 // sr07-home-address
 router.post('/personal-details/sr07-home-address', function(req, res) {
-  // Clear any previous errors
   req.session.data['error'] = null
-  
-  // Redirect to smoker page
   res.redirect('sr07a-smoker')
 })
 
@@ -202,14 +179,17 @@ router.post('/personal-details/sr07c-interpreter', function(req, res) {
   }
 
   req.session.data['error'] = null
-  
+
+  // If yes, go to language selection page
   if (interpreter === 'yes') {
     return res.redirect('language-selection')
   }
-  
-  res.redirect('sr08-check-details')
+
+  // If no, go to confirmation preference page
+  res.redirect('sr07d-confirmation-preference')
 })
 
+// language-selection
 router.post('/personal-details/language-selection', function(req, res) {
   let language = req.session.data['language']
 
@@ -219,12 +199,79 @@ router.post('/personal-details/language-selection', function(req, res) {
   }
 
   req.session.data['error'] = null
+  res.redirect('sr07d-confirmation-preference')
+})
+
+// sr07d-confirmation-preference
+router.post('/personal-details/sr07d-confirmation-preference', function(req, res) {
+  let confirmationPreference = req.session.data['confirmation-preference']
+
+  if (!confirmationPreference) {
+    req.session.data['error'] = 'confirmation-preference'
+    return res.redirect('sr07d-confirmation-preference')
+  }
+
+  req.session.data['error'] = null
+
+  // If yes, go to confirmation method page
+  if (confirmationPreference === 'yes') {
+    return res.redirect('sr07e-confirmation-method')
+  }
+
+  // If no, skip to check details
+  res.redirect('sr08-check-details')
+})
+
+// sr07e-confirmation-method
+router.post('/personal-details/sr07e-confirmation-method', function(req, res) {
+  let textSelected = req.session.data['confirmation-text']
+  let emailSelected = req.session.data['confirmation-email-checkbox']
+  let mobile = req.session.data['confirmation-mobile']
+  let email = req.session.data['confirmation-email']
+
+  // Check at least one option is selected
+  if (!textSelected && !emailSelected) {
+    req.session.data['error'] = 'confirmation-method'
+    return res.redirect('sr07e-confirmation-method')
+  }
+
+  // If text selected, validate mobile number
+  if (textSelected) {
+    if (!mobile) {
+      req.session.data['error'] = 'mobile-missing'
+      return res.redirect('sr07e-confirmation-method')
+    }
+
+    let cleanedMobile = mobile.replace(/[\s\-\(\)]/g, '')
+    let mobileRegex = /^(?:(?:\+44|0044)7\d{9}|07\d{9})$/
+
+    if (!mobileRegex.test(cleanedMobile)) {
+      req.session.data['error'] = 'mobile-invalid'
+      return res.redirect('sr07e-confirmation-method')
+    }
+  }
+
+  // If email selected, validate email address
+  if (emailSelected) {
+    if (!email) {
+      req.session.data['error'] = 'email-missing'
+      return res.redirect('sr07e-confirmation-method')
+    }
+
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    if (!emailRegex.test(email)) {
+      req.session.data['error'] = 'email-invalid'
+      return res.redirect('sr07e-confirmation-method')
+    }
+  }
+
+  req.session.data['error'] = null
   res.redirect('sr08-check-details')
 })
 
 // sr08-check-details - redirect to acknowledgement page
 router.post('/personal-details/sr08-check-details', function(req, res) {
-  // Clear error AND reset acknowledgement checkbox for fresh start
   req.session.data['error'] = null
   req.session.data['acknowledgement'] = null
   res.redirect('../confirmation/sr08b-acknowledge-gp-3')
@@ -232,9 +279,13 @@ router.post('/personal-details/sr08-check-details', function(req, res) {
 
 // sr08b-acknowledge-gp-3 - validate checkbox and redirect to confirmation
 router.post('/confirmation/sr08b-acknowledge-gp-3', function(req, res) {
+  // Get the checkbox value from the form submission
   let acknowledgement = req.session.data['acknowledgement']
-
-  if (!acknowledgement) {
+  
+  // If checkbox is unchecked, it won't be in the POST data
+  // The prototype kit sets unchecked checkboxes to empty array []
+  if (!acknowledgement || acknowledgement === '' || (Array.isArray(acknowledgement) && acknowledgement.length === 0)) {
+    req.session.data['acknowledgement'] = null
     req.session.data['error'] = 'acknowledgement'
     return res.redirect('sr08b-acknowledge-gp-3')
   }
