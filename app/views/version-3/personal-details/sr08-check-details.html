@@ -81,7 +81,7 @@
           2nd Floor, Beeston, 123 Cemetery Rd<br>Leeds<br>LS11 8LH
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="#" style="color: #768692; pointer-events: none; text-decoration: none;">
             Change<span class="nhsuk-u-visually-hidden"> GP practice</span>
           </a>
         </dd>
@@ -213,7 +213,7 @@
     <!-- Conditional callout for interpreter or extra help -->
     {% if data.interpreter == 'yes' or data['extra-help'] == 'yes' %}
     <div class="app-callout app-callout--info">
-      <p>Contact the X-ray site before you go to let them know you need 
+      <p>Contact the X-ray site (phone number: 01132433144) before you go to let them know you need 
         {% if data.interpreter == 'yes' and data['extra-help'] == 'yes' %}
           extra help and an interpreter
         {% elif data.interpreter == 'yes' %}
