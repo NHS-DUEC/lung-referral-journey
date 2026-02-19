@@ -6,7 +6,7 @@
 
 {% block content_primary %}
 
-    <form action="sr07e-confirmation-method" method="post" class="form">
+  <form action="sr07e-confirmation-method" method="post" class="form">
 
       <!-- Error summary -->
       {% if data.error == 'confirmation-method' or data.error == 'mobile-missing' or data.error == 'mobile-invalid' or data.error == 'email-missing' or data.error == 'email-invalid' %}
@@ -80,7 +80,7 @@
                   <span class="nhsuk-u-visually-hidden">Error:</span> Enter a valid UK mobile number
                 </span>
                 {% endif %}
-                <input class="nhsuk-input nhsuk-u-width-two-thirds {% if data.error == 'mobile-missing' or data.error == 'mobile-invalid' %}nhsuk-input--error{% endif %}" id="confirmation-mobile" name="confirmation-mobile" type="tel" value="{{ data['confirmation-mobile'] }}" autocomplete="tel">
+                <input class="nhsuk-input nhsuk-u-width-two-thirds {% if data.error == 'mobile-missing' or data.error == 'mobile-invalid' %}nhsuk-input--error{% endif %}" id="confirmation-mobile" name="confirmation-mobile" type="tel" value="{{ data['confirmation-mobile'] or data['TelephoneNumber'] }}" autocomplete="tel">
               </div>
             </div>
 
@@ -108,7 +108,7 @@
                   <span class="nhsuk-u-visually-hidden">Error:</span> Enter a valid email address
                 </span>
                 {% endif %}
-                <input class="nhsuk-input nhsuk-u-width-two-thirds {% if data.error == 'email-missing' or data.error == 'email-invalid' %}nhsuk-input--error{% endif %}" id="confirmation-email" name="confirmation-email" type="email" value="{{ data['confirmation-email'] }}" autocomplete="email">
+                <input class="nhsuk-input nhsuk-u-width-two-thirds {% if data.error == 'email-missing' or data.error == 'email-invalid' %}nhsuk-input--error{% endif %}" id="confirmation-email" name="confirmation-email" type="email" value="{{ data['confirmation-email'] or data['EmailAddress'] }}" autocomplete="email">
               </div>
             </div>
 

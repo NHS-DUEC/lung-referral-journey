@@ -66,22 +66,24 @@ router.post('/personal-details/sr03-dob', function(req, res) {
   res.redirect('sr04-phone')
 })
 
-// sr04-phone validation
+// sr04-phone validation (optional - only validate if provided)
 router.post('/personal-details/sr04-phone', function(req, res) {
   let phone = req.session.data['TelephoneNumber']
 
   let cleanedPhone = phone ? phone.replace(/[\s\-\(\)]/g, '') : ''
 
+  // If phone is empty, allow through (user can skip)
   if (!cleanedPhone) {
-    res.redirect('sr04-phone?error=missing')
-    return
+    req.session.data['error'] = null
+    return res.redirect('sr05-email')
   }
 
+  // If phone is provided, validate it
   let ukPhoneRegex = /^(?:(?:\+44|0044)[127]\d{8,9}|0[127]\d{8,9})$/
 
   if (!ukPhoneRegex.test(cleanedPhone)) {
-    res.redirect('sr04-phone?error=invalid')
-    return
+    req.session.data['error'] = 'invalid'
+    return res.redirect('sr04-phone')
   }
 
   req.session.data['error'] = null
