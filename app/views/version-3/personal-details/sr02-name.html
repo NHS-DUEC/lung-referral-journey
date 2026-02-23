@@ -8,48 +8,19 @@
 
           <form action="sr02-name" method="post" class="form">
 
-            <!-- Error summary -->
-            {% if data.error %}
-            <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
-              <h2 class="nhsuk-error-summary__title" id="error-summary-title">
-                There is a problem
-              </h2>
-              <div class="nhsuk-error-summary__body">
-                <ul class="nhsuk-list nhsuk-error-summary__list">
-                  {% if data.error == 'forename' or data.error == 'both' %}
-                  <li><a href="#Forename">Enter your first name</a></li>
-                  {% endif %}
-                  {% if data.error == 'surname' or data.error == 'both' %}
-                  <li><a href="#Surname">Enter your last name</a></li>
-                  {% endif %}
-                </ul>
-              </div>
-            </div>
-            {% endif %}
-
             <fieldset class="nhsuk-fieldset">
               <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" data-test-id="heading-text">
                 <h1 class="nhsuk-fieldset__heading">What is your name?</h1>
               </legend>
 
-              <div class="nhsuk-form-group {% if data.error == 'forename' or data.error == 'both' %}nhsuk-form-group--error{% endif %}">
+              <div class="nhsuk-form-group">
                 <label class="nhsuk-label" data-test-id="patient-forename-label" for="Forename">First name</label>
-                {% if data.error == 'forename' or data.error == 'both' %}
-                <span class="nhsuk-error-message" id="forename-error">
-                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter your first name
-                </span>
-                {% endif %}
-                <input data-test-id="patient-forename-input" value="{{ data.Forename }}" class="nhsuk-input nhsuk-input--width-20 {% if data.error == 'forename' or data.error == 'both' %}nhsuk-input--error{% endif %}" type="text" id="Forename" name="Forename">
+                <input data-test-id="patient-forename-input" value="{{ data.Forename }}" class="nhsuk-input nhsuk-input--width-20" type="text" id="Forename" name="Forename">
               </div>
 
-              <div class="nhsuk-form-group {% if data.error == 'surname' or data.error == 'both' %}nhsuk-form-group--error{% endif %}">
+              <div class="nhsuk-form-group">
                 <label class="nhsuk-label" data-test-id="patient-surname-label" for="Surname">Last name</label>
-                {% if data.error == 'surname' or data.error == 'both' %}
-                <span class="nhsuk-error-message" id="surname-error">
-                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter your last name
-                </span>
-                {% endif %}
-                <input data-test-id="patient-surname-input" value="{{ data.Surname }}" class="nhsuk-input nhsuk-input--width-20 {% if data.error == 'surname' or data.error == 'both' %}nhsuk-input--error{% endif %}" type="text" id="Surname" name="Surname">
+                <input data-test-id="patient-surname-input" value="{{ data.Surname }}" class="nhsuk-input nhsuk-input--width-20" type="text" id="Surname" name="Surname">
               </div>
             </fieldset>
 

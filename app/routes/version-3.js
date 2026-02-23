@@ -1,21 +1,9 @@
 const router = require('express').Router()
 
-// sr02-name validation
+// sr02-name - no validation, just proceed
 router.post('/personal-details/sr02-name', function(req, res) {
-  
-  let forename = req.session.data['Forename']
-  let surname = req.session.data['Surname']
-
-  if (!forename && !surname) {
-    res.redirect('sr02-name?error=both')
-  } else if (!forename) {
-    res.redirect('sr02-name?error=forename')
-  } else if (!surname) {
-    res.redirect('sr02-name?error=surname')
-  } else {
-    req.session.data['error'] = null
-    res.redirect('sr03-dob')
-  }
+  req.session.data['error'] = null
+  res.redirect('sr03-dob')
 })
 
 // sr03-dob validation
