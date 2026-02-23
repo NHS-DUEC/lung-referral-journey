@@ -60,7 +60,17 @@
   border-radius: 10px 10px 0px 0px;
   border: 2px solid #d8dde0;
   padding: 20px;
+  color: #212B32 !important;
+
+  * {
+    color: #212B32 !important;
+  }
+
+  .nhsuk-card__heading {
+    color: #005eb8 !important;
+  }
 }
+
 
 .select-panel-i {
   display: flex;
