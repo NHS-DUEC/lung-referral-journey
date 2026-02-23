@@ -83,6 +83,7 @@
   border-left: 2px solid #d8dde0;
   border-right: 2px solid #d8dde0;
   border-bottom: 6px solid #d8dde0;
+  width: 100%;//safari was not respecting the width of the card without this
 
   p {
     color: #005eb8;
