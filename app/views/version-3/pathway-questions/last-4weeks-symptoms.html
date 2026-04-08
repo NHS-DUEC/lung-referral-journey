@@ -1,5 +1,5 @@
 {% set page = {
-  title: 'Have you had any of the following in the last 4 weeks?',
+  title: 'Have you had any of the following symptoms for the last 4 weeks?',
   layout: { file: layouts.base },
   answers: [
     { id: 'SelectedAnswer', value: '{&quot;title&quot;:&quot;Night sweats&quot;,&quot;titleWithoutSpaces&quot;:&quot;Nightsweats&quot;,&quot;symptomDiscriminator&quot;:&quot;4512&quot;,&quot;supportingInfo&quot;:&quot;&quot;,&quot;keywords&quot;:&quot;|&quot;,&quot;excludeKeywords&quot;:&quot;&quot;,&quot;reportText&quot;:&quot;Night sweats had been experienced over the previous 4 weeks.&quot;,&quot;dispoDisplayText&quot;:&quot;Night sweats over last 4 weeks&quot;,&quot;mediaFiles&quot;:null,&quot;IsQuestion&quot;:false,&quot;HasMedia&quot;:false,&quot;order&quot;:1,&quot;isPositive&quot;:true,&quot;specifyText&quot;:&quot;&quot;,&quot;nextNodeLabel&quot;:&quot;Outcome&quot;,&quot;nextNodeId&quot;:&quot;Dx75&quot;}', label: 'Night sweats', testId: 'answer-0', nextNode: 'Outcome' },
@@ -22,6 +22,10 @@
       <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l nhsuk-u-margin-bottom-5">
         <h1 class="nhsuk-fieldset__heading">{{ page.title }}</h1>
       </legend>
+
+      <div class="app-callout app-callout--info nhsuk-u-margin-bottom-5">
+        <p>We are looking for ongoing symptoms that have not gone away in 4 weeks. Pick the first that applies.</p>
+      </div>
 
       <div class="nhsuk-radios" data-test-id="answers">
         {% for answer in page.answers %}
