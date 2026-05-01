@@ -1,0 +1,27 @@
+{% extends "111/layouts/base.html" %}
+
+{% block content_primary %}
+<div class="nhsuk-u-reading-width">
+
+  <form action="/version-4/personal-details/sr09-tell-us-more" method="post" novalidate>
+    <h1 class="nhsuk-heading-l">Tell us more about you</h1>
+
+    <p>It's helpful for the breast clinic to have some more information about you in advance.</p>
+    <p>This is to help with tests and investigations.</p>
+    <p>Try to answer the following few questions if you can.</p>
+
+    <div class="app-callout app-callout--info nhsuk-u-margin-bottom-4">
+      <p>You will still get an appointment if you do not know the answers.</p>
+    </div>
+
+    <button class="nhsuk-button" type="submit" data-module="nhsuk-button">Next</button>
+  </form>
+
+  <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4">
+    <summary class="nhsuk-details__summary">
+      <span class="nhsuk-details__summary-text">Does this page make sense?</span>
+    </summary>
+  </details>
+
+</div>
+{% endblock %}

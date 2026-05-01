@@ -1,0 +1,91 @@
+{% extends "111/layouts/base.html" %}
+
+{% block content_primary %}
+<div class="nhsuk-u-reading-width">
+
+    <div class="nhsuk-core app-callout callout--attention">
+        <div class="nhsuk-heading-l">We have sent a copy of this page to {{ data['TelephoneNumber'] or
+            data['EmailAddress'] }}</div>
+    </div>
+
+    <h1 class="nhsuk-heading-xl">Your request for an appointment has been sent</h1>
+
+    <div class="app-callout app-callout--info nhsuk-u-margin-bottom-4">
+        <p><strong>The clinic will contact you by {{ data['fiveWorkingDays'] }}</strong></p>
+        <p>If they have not been in touch by then you <strong>must</strong> contact:</p>
+        <p>01823 792 871 or <a href="mailto:BreastFDT@somersetFT.nhs.uk" target="_blank">BreastFDT@somersetFT.nhs.uk</a>
+        </p>
+        <p>You can contact the clinic on weekdays during working hours.</p>
+    </div>
+
+    <h2 class="nhsuk-heading-m">What happens when the clinic contacts you</h2>
+    <p>The clinic reception staff will try and call you at least twice. The number might show as "unknown" on your
+        display.</p>
+    <p>If they cannot contact you they will leave a message to say they are sending you an appointment letter.</p>
+    <p>The letter will tell you:</p>
+    <ul class="nhsuk-list nhsuk-list--bullet">
+        <li>exactly where to go</li>
+        <li>who you will be seeing on the day</li>
+        <li>what will happen during the appointment</li>
+        <li>what to do if you need to rearrange the appointment</li>
+    </ul>
+    <p>Tell the clinic reception staff when they call if you need an interpreter for your appointment.</p>
+
+    <details class="nhsuk-details nhsuk-expander">
+        <summary class="nhsuk-details__summary">
+            <span class="nhsuk-details__summary-text">Things to look out for while you wait for your appointment</span>
+        </summary>
+        <div class="nhsuk-details__text">
+            <p>If you:</p>
+            <ul class="nhsuk-list nhsuk-list--bullet">
+                <li>notice your breast is more painful, swollen, warm or red (which may be harder to see on black or
+                    brown skin)</li>
+                <li>develop a high temperature</li>
+                <li>feel confused</li>
+                <li>want to be sick (vomit)</li>
+            </ul>
+            <p>You should ask for an urgent (same day) GP appointment.</p>
+            <p>If you cannot see your GP, go to a local urgent treatment centre (UTC).</p>
+        </div>
+    </details>
+
+    <h2 class="nhsuk-heading-m">What happens during the appointment</h2>
+    <p>You can take a friend or relative with you if you like.</p>
+    <p>You will be seen in a private room and will need to be bare-chested.</p>
+    <p>A doctor or nurse will examine your chest using their hands. The doctor or nurse could be male or female.</p>
+    <div class="app-callout app-callout--info nhsuk-u-margin-bottom-4">
+        <p>You should expect to spend no more than 3 hours at the clinic.</p>
+    </div>
+
+    <h2 class="nhsuk-heading-m">Tests you might have</h2>
+    <p>You might have a breast X-ray (which is called a mammogram for men too). If you need ultrasound or other tests
+        they can all be done at the clinic.</p>
+    <p>Sometimes you might need to have a biopsy. This is where a small needle is inserted into the breast tissue to
+        collect some cells from the lump. The cells are checked under the microscope.</p>
+    <p>You will usually have all the tests you need on the same day. Not everyone needs all the tests.</p>
+    <p>You can read more about <a
+            href="https://breastcancernow.org/about-breast-cancer/primary-breast-cancer/breast-cancer-in-men"
+            target="_blank">breast cancer diagnosis in men on the Breast Cancer Now website</a>.</p>
+
+    <h2 class="nhsuk-heading-m">Getting your results</h2>
+    <p>The breast clinic will tell you how and when you will get your results. Any results will be given in person or
+        over the phone.</p>
+    <p>You might get some results later the same day, others can take a week or more.</p>
+    <div class="app-callout app-callout--info nhsuk-u-margin-bottom-4">
+        <p>The whole process from referral to knowing whether or not you have cancer should take no more than 28 days.
+        </p>
+    </div>
+
+    <h2 class="nhsuk-heading-m">Get advice and support</h2>
+    <p>It's normal to feel anxious before an appointment but most men who are referred to a clinic do not have cancer.
+    </p>
+    <p>You do not need to have been diagnosed with breast cancer to get support from specialist charities.</p>
+    <p>The <a href="https://www.macmillan.org.uk/cancer-information-and-support/breast-cancer/breast-cancer-in-men"
+            target="_blank">Macmillan website</a> has information about breast cancer in men. You can also get support
+        from their online community.</p>
+    <p>You can <a href="#">email or call Breast Cancer Now's specialist nurses for advice</a> or read more <a
+            href="https://breastcancernow.org/about-breast-cancer" target="_blank">information on their website about
+            where to get support</a>.</p>
+
+</div>
+{% endblock %}

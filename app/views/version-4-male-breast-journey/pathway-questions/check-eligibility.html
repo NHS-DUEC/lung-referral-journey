@@ -1,0 +1,27 @@
+{% extends "111/layouts/base.html" %}
+
+{% block content_primary %}
+<div class="nhsuk-u-reading-width">
+
+  <h1 class="nhsuk-heading-l">Check if you can self-refer into a clinic <strong class="nhsuk-tag">pilot</strong></h1>
+
+  <p>"Pilot" means we are trying out a new service in a small number of areas.</p>
+
+  <p>This pilot allows self-referral into a clinic for tests, without a GP appointment.</p>
+
+  <p>To see if you can self-refer we need to check your postcode.</p>
+
+  <p>If you are not eligible for this pilot, we will tell you where else you should go to get help.</p>
+
+  <form action="/version-4/pathway-questions/check-eligibility" method="post" novalidate>
+    <button class="nhsuk-button" type="submit" data-module="nhsuk-button">Next</button>
+  </form>
+
+  <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4">
+    <summary class="nhsuk-details__summary">
+      <span class="nhsuk-details__summary-text">Does this page make sense?</span>
+    </summary>
+  </details>
+
+</div>
+{% endblock %}

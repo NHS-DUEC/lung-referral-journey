@@ -1,0 +1,54 @@
+{% extends "111/layouts/base.html" %}
+
+{% block content_primary %}
+<div class="nhsuk-u-reading-width">
+
+  <h1 class="nhsuk-heading-l">Check your contact details</h1>
+
+  <div class="app-callout app-callout--info nhsuk-u-margin-bottom-4">
+    <p>The clinic will use these details to arrange your appointment.</p>
+  </div>
+
+  <dl class="nhsuk-summary-list">
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">Name</dt>
+      <dd class="nhsuk-summary-list__value">{{ data['FirstName'] }} {{ data['LastName'] }}</dd>
+      <dd class="nhsuk-summary-list__actions">
+        <a href="sr02-name">Change</a>
+      </dd>
+    </div>
+
+    {% if data['contact-method'] == 'cannot-speak' %}
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">Email</dt>
+      <dd class="nhsuk-summary-list__value">{{ data['EmailAddress'] }}</dd>
+      <dd class="nhsuk-summary-list__actions">
+        <a href="sr05-email">Change</a>
+      </dd>
+    </div>
+    {% else %}
+    <div class="nhsuk-summary-list__row">
+      <dt class="nhsuk-summary-list__key">Phone number</dt>
+      <dd class="nhsuk-summary-list__value">{{ data['TelephoneNumber'] }}</dd>
+      <dd class="nhsuk-summary-list__actions">
+        <a href="sr05-phone">Change</a>
+      </dd>
+    </div>
+    {% endif %}
+
+  </dl>
+
+  <p>By confirming these details you agree to share them with the service.</p>
+
+  <form action="/version-4/personal-details/sr16-check-details" method="post" novalidate>
+    <button class="nhsuk-button" type="submit" data-module="nhsuk-button">Confirm details</button>
+  </form>
+
+  <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4">
+    <summary class="nhsuk-details__summary">
+      <span class="nhsuk-details__summary-text">Does this page make sense?</span>
+    </summary>
+  </details>
+
+</div>
+{% endblock %}

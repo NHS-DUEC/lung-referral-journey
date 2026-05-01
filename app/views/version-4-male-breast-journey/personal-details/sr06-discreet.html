@@ -1,0 +1,40 @@
+{% extends "111/layouts/base.html" %}
+
+{% block content_primary %}
+<div class="nhsuk-u-reading-width">
+
+  <form action="/version-4/personal-details/sr06-discreet" method="post" novalidate>
+    <div class="nhsuk-form-group nhsuk-u-margin-bottom-5">
+      <fieldset class="nhsuk-fieldset">
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+          <h1 class="nhsuk-fieldset__heading">Do you need the clinic to be discreet when they call you?</h1>
+        </legend>
+
+        <div class="app-callout app-callout--info nhsuk-u-margin-bottom-4">
+          <p>This means you would like to keep all details of your appointment private, including from family members.</p>
+        </div>
+
+        <div class="nhsuk-radios">
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="discreet" name="discreet" type="radio" value="yes">
+            <label class="nhsuk-label nhsuk-radios__label" for="discreet">Yes</label>
+          </div>
+          <div class="nhsuk-radios__item">
+            <input class="nhsuk-radios__input" id="discreet-2" name="discreet" type="radio" value="no">
+            <label class="nhsuk-label nhsuk-radios__label" for="discreet-2">No</label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button class="nhsuk-button" type="submit" data-module="nhsuk-button">Next</button>
+  </form>
+
+  <details class="nhsuk-details nhsuk-u-reading-width nhsuk-u-margin-top-4">
+    <summary class="nhsuk-details__summary">
+      <span class="nhsuk-details__summary-text">Does this page make sense?</span>
+    </summary>
+  </details>
+
+</div>
+{% endblock %}
