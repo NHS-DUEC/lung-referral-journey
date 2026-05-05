@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 // Categories page 1
 router.get('/', function(req, res) {
+  req.session.data = {}
   res.render('version-4-male-breast-journey/index')
 })
 
