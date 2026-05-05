@@ -27,6 +27,7 @@ router.post('/pathway-questions/q1', function(req, res) {
 
 // Breast male interrupt
 router.get('/pathway-questions/breast-male-interrupt', function(req, res) {
+  req.session.data = {}
   res.render('version-4-male-breast-journey/pathway-questions/breast-male-interrupt')
 })
 
