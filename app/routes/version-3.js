@@ -130,7 +130,7 @@ router.post('/personal-details/sr06-home-postcode', function(req, res) {
 // sr07-home-address
 router.post('/personal-details/sr07-home-address', function(req, res) {
   req.session.data['error'] = null
-  res.redirect('sr07a-smoker')
+  res.redirect('sr07b-extra-help')
 })
 
 // sr07a-smoker
@@ -143,7 +143,47 @@ router.post('/personal-details/sr07a-smoker', function(req, res) {
   }
 
   req.session.data['error'] = null
-  res.redirect('sr07b-extra-help')
+
+  // If yes, go to follow-up smoking questions
+  if (smoker === 'yes' || smoker === 'used-to') {
+    return res.redirect('sr07a1-smoked-or-vaped')
+  }
+
+  // If never smoked or do not want to answer, go to check details
+  res.redirect('sr08-check-details')
+})
+
+// sr07a1-smoked-or-vaped
+router.post('/personal-details/sr07a1-smoked-or-vaped', function(req, res) {
+  let smokedOrVaped = req.session.data['smoked-or-vaped']
+
+  if (!smokedOrVaped) {
+    req.session.data['error'] = 'smoked-or-vaped'
+    return res.redirect('sr07a1-smoked-or-vaped')
+  }
+
+  req.session.data['error'] = null
+
+  // If yes, go to detailed smoking history
+  if (smokedOrVaped === 'yes') {
+    return res.redirect('sr07a2-smoking-history')
+  }
+
+  // If no or prefer not to say, skip to check details
+  res.redirect('sr08-check-details')
+})
+
+// sr07a2-smoking-history
+router.post('/personal-details/sr07a2-smoking-history', function(req, res) {
+  let smokingHistory = req.session.data['smoking-history']
+
+  if (!smokingHistory || smokingHistory.length === 0) {
+    req.session.data['error'] = 'smoking-history'
+    return res.redirect('sr07a2-smoking-history')
+  }
+
+  req.session.data['error'] = null
+  res.redirect('sr08-check-details')
 })
 
 // sr07b-extra-help
@@ -208,8 +248,8 @@ router.post('/personal-details/sr07d-confirmation-preference', function(req, res
     return res.redirect('sr07e-confirmation-method')
   }
 
-  // If no, skip to check details
-  res.redirect('sr08-check-details')
+  // If no, go to smoker question
+  res.redirect('sr07a-smoker')
 })
 
 // sr07e-confirmation-method
@@ -257,7 +297,7 @@ router.post('/personal-details/sr07e-confirmation-method', function(req, res) {
   }
 
   req.session.data['error'] = null
-  res.redirect('sr08-check-details')
+  res.redirect('sr07a-smoker')
 })
 
 // sr08-check-details - redirect to acknowledgement page
