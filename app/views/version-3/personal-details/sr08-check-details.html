@@ -92,18 +92,16 @@
           Smoking history
         </dt>
         <dd class="nhsuk-summary-list__value">
-          {% if data.smoker == 'yes' %}
+          {% if data['smoked-or-vaped'] == 'yes' %}
             Yes
-          {% elif data.smoker == 'used-to' %}
-            Used to smoke
-          {% elif data.smoker == 'never' %}
-            Never smoked
-          {% elif data.smoker == 'prefer-not-to-say' %}
+          {% elif data['smoked-or-vaped'] == 'no' %}
+            No
+          {% elif data['smoked-or-vaped'] == 'prefer-not-to-say' %}
             Prefer not to say
           {% endif %}
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="sr07a-smoker">
+          <a href="sr07a1-smoked-or-vaped">
             Change<span class="nhsuk-u-visually-hidden"> smoking history</span>
           </a>
         </dd>

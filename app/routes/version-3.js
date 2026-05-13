@@ -133,26 +133,6 @@ router.post('/personal-details/sr07-home-address', function(req, res) {
   res.redirect('sr07b-extra-help')
 })
 
-// sr07a-smoker
-router.post('/personal-details/sr07a-smoker', function(req, res) {
-  let smoker = req.session.data['smoker']
-
-  if (!smoker) {
-    req.session.data['error'] = 'smoker'
-    return res.redirect('sr07a-smoker')
-  }
-
-  req.session.data['error'] = null
-
-  // If yes, go to follow-up smoking questions
-  if (smoker === 'yes' || smoker === 'used-to') {
-    return res.redirect('sr07a1-smoked-or-vaped')
-  }
-
-  // If never smoked or do not want to answer, go to check details
-  res.redirect('sr08-check-details')
-})
-
 // sr07a1-smoked-or-vaped
 router.post('/personal-details/sr07a1-smoked-or-vaped', function(req, res) {
   let smokedOrVaped = req.session.data['smoked-or-vaped']
@@ -248,8 +228,9 @@ router.post('/personal-details/sr07d-confirmation-preference', function(req, res
     return res.redirect('sr07e-confirmation-method')
   }
 
-  // If no, go to smoker question
-  res.redirect('sr07a-smoker')
+  // If no or prefer not to say, clear smoking history and skip to check details
+  req.session.data['smoking-history'] = null
+  res.redirect('sr07a1-smoked-or-vaped')
 })
 
 // sr07e-confirmation-method
@@ -297,7 +278,7 @@ router.post('/personal-details/sr07e-confirmation-method', function(req, res) {
   }
 
   req.session.data['error'] = null
-  res.redirect('sr07a-smoker')
+  res.redirect('sr07a1-smoked-or-vaped')
 })
 
 // sr08-check-details - redirect to acknowledgement page
@@ -309,11 +290,8 @@ router.post('/personal-details/sr08-check-details', function(req, res) {
 
 // sr08b-acknowledge-gp-3 - validate checkbox and redirect to confirmation
 router.post('/confirmation/sr08b-acknowledge-gp-3', function(req, res) {
-  // Get the checkbox value from the form submission
   let acknowledgement = req.session.data['acknowledgement']
   
-  // If checkbox is unchecked, it won't be in the POST data
-  // The prototype kit sets unchecked checkboxes to empty array []
   if (!acknowledgement || acknowledgement === '' || (Array.isArray(acknowledgement) && acknowledgement.length === 0)) {
     req.session.data['acknowledgement'] = null
     req.session.data['error'] = 'acknowledgement'
