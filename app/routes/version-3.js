@@ -133,39 +133,6 @@ router.post('/personal-details/sr07-home-address', function(req, res) {
   res.redirect('sr07b-extra-help')
 })
 
-// sr07a1-smoked-or-vaped
-router.post('/personal-details/sr07a1-smoked-or-vaped', function(req, res) {
-  let smokedOrVaped = req.session.data['smoked-or-vaped']
-
-  if (!smokedOrVaped) {
-    req.session.data['error'] = 'smoked-or-vaped'
-    return res.redirect('sr07a1-smoked-or-vaped')
-  }
-
-  req.session.data['error'] = null
-
-  // If yes, go to detailed smoking history
-  if (smokedOrVaped === 'yes') {
-    return res.redirect('sr07a2-smoking-history')
-  }
-
-  // If no or prefer not to say, skip to check details
-  res.redirect('sr08-check-details')
-})
-
-// sr07a2-smoking-history
-router.post('/personal-details/sr07a2-smoking-history', function(req, res) {
-  let smokingHistory = req.session.data['smoking-history']
-
-  if (!smokingHistory || smokingHistory.length === 0) {
-    req.session.data['error'] = 'smoking-history'
-    return res.redirect('sr07a2-smoking-history')
-  }
-
-  req.session.data['error'] = null
-  res.redirect('sr08-check-details')
-})
-
 // sr07b-extra-help
 router.post('/personal-details/sr07b-extra-help', function(req, res) {
   let extraHelp = req.session.data['extra-help']
@@ -195,8 +162,8 @@ router.post('/personal-details/sr07c-interpreter', function(req, res) {
     return res.redirect('language-selection')
   }
 
-  // If no, go to confirmation preference page
-  res.redirect('sr07d-confirmation-preference')
+  // If no, go to smoking question
+  res.redirect('sr07a1-smoked-or-vaped')
 })
 
 // language-selection
@@ -206,6 +173,39 @@ router.post('/personal-details/language-selection', function(req, res) {
   if (!language) {
     req.session.data['error'] = 'language'
     return res.redirect('language-selection')
+  }
+
+  req.session.data['error'] = null
+  res.redirect('sr07a1-smoked-or-vaped')
+})
+
+// sr07a1-smoked-or-vaped
+router.post('/personal-details/sr07a1-smoked-or-vaped', function(req, res) {
+  let smokedOrVaped = req.session.data['smoked-or-vaped']
+
+  if (!smokedOrVaped) {
+    req.session.data['error'] = 'smoked-or-vaped'
+    return res.redirect('sr07a1-smoked-or-vaped')
+  }
+
+  req.session.data['error'] = null
+
+  // If yes, go to detailed smoking history
+  if (smokedOrVaped === 'yes') {
+    return res.redirect('sr07a2-smoking-history')
+  }
+
+  // If no or prefer not to say, go to confirmation preference
+  res.redirect('sr07d-confirmation-preference')
+})
+
+// sr07a2-smoking-history
+router.post('/personal-details/sr07a2-smoking-history', function(req, res) {
+  let smokingHistory = req.session.data['smoking-history']
+
+  if (!smokingHistory || smokingHistory.length === 0) {
+    req.session.data['error'] = 'smoking-history'
+    return res.redirect('sr07a2-smoking-history')
   }
 
   req.session.data['error'] = null
@@ -228,9 +228,8 @@ router.post('/personal-details/sr07d-confirmation-preference', function(req, res
     return res.redirect('sr07e-confirmation-method')
   }
 
-  // If no or prefer not to say, clear smoking history and skip to check details
-  req.session.data['smoking-history'] = null
-  res.redirect('sr07a1-smoked-or-vaped')
+  // If no, go to check details
+  res.redirect('sr08-check-details')
 })
 
 // sr07e-confirmation-method
@@ -278,7 +277,7 @@ router.post('/personal-details/sr07e-confirmation-method', function(req, res) {
   }
 
   req.session.data['error'] = null
-  res.redirect('sr07a1-smoked-or-vaped')
+  res.redirect('sr08-check-details')
 })
 
 // sr08-check-details - redirect to acknowledgement page
